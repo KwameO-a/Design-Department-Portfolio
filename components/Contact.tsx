@@ -1,33 +1,42 @@
+import Image from 'next/image';
+
 export default function Contact() {
   return (
     <section id="contact" className="bg-white min-h-screen flex flex-col lg:flex-row">
       {/* Left Column – Logo and Intro Text */}
       <div className="lg:w-1/3 p-8 flex flex-col justify-center">
-        <img
+        <Image
           src="/images/logo.png"
           alt="Design Department Logo"
+          width={192}
+          height={96}
           className="w-48 mb-8 mx-auto lg:mx-0"
+          loading="lazy"
         />
         <div className="space-y-4 text-sm text-gray-700 text-justify">
           <p>
-            We’d love to hear from you. Whether you're starting a new project,
+            We'd love to hear from you. Whether you're starting a new project,
             seeking design collaboration, or simply want to learn more about our
             work, we welcome the conversation.
           </p>
           <p>
             At the heart of what we do is a belief in meaningful engagement, so
-            let’s talk about how we can create something exceptional together.
+            let's talk about how we can create something exceptional together.
           </p>
         </div>
       </div>
 
       {/* Center Image */}
-      <div
-        className="lg:w-1/3 bg-center bg-cover min-h-[500px]"
-        style={{ backgroundImage: `url('/images/contact-image.jpg')` }}
-        aria-label="Contact showcase"
-        role="img"
-      />
+      <div className="lg:w-1/3 relative min-h-[500px]">
+        <Image
+          src="/images/contact-image.JPG"
+          alt="Contact showcase"
+          fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
+          className="object-cover object-center"
+          loading="lazy"
+        />
+      </div>
 
       {/* Right Column – Heading centered, details left-aligned */}
       <div className="lg:w-1/3 p-8 flex flex-col justify-center items-center">
@@ -53,7 +62,7 @@ export default function Contact() {
         <div className="mt-8 w-full max-w-xs sm:max-w-sm mx-auto text-left text-gray-800 text-sm space-y-4">
           {/* Phone 1 */}
           <a href="tel:+233501369226" className="flex items-center gap-3 group">
-            <img src="/images/call.png" alt="" className="w-5 h-5 opacity-80 group-hover:opacity-100" />
+            <Image src="/images/call.png" alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100" />
             <span className="underline-offset-4 group-hover:underline">
               +233 50 136 9226
             </span>
@@ -61,7 +70,7 @@ export default function Contact() {
 
           {/* Phone 2 */}
           <a href="tel:+233501369074" className="flex items-center gap-3 group">
-            <img src="/images/call.png" alt="" className="w-5 h-5 opacity-80 group-hover:opacity-100" />
+            <Image src="/images/call.png" alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100" />
             <span className="underline-offset-4 group-hover:underline">
               +233 50 136 9074
             </span>
@@ -69,10 +78,12 @@ export default function Contact() {
 
           {/* Email */}
           <a href="mailto:business@designdepartment.work" className="flex items-center gap-3 group">
-            <img
+            <Image
               src="/images/icons8-email-50.png"
               alt=""
-              className="w-5 h-5 opacity-80 group-hover:opacity-100"
+              width={20}
+              height={20}
+              className="opacity-80 group-hover:opacity-100"
             />
             <span className="underline-offset-4 group-hover:underline">
               business@designdepartment.work
@@ -81,7 +92,7 @@ export default function Contact() {
 
           {/* Location */}
           <div className="flex items-center gap-3">
-            <img src="/images/location.png" alt="" className="w-5 h-5 opacity-80" />
+            <Image src="/images/location.png" alt="" width={20} height={20} className="opacity-80" />
             <span>Accra, Ghana</span>
           </div>
         </div>

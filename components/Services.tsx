@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Services() {
   return (
     <section id="services" className="bg-white relative py-16 px-8 lg:px-16">
@@ -8,15 +10,19 @@ export default function Services() {
         <div className="w-full lg:w-1/2">
           <div
             className={[
-              // give it height on small screens, stretch on lg+
-              'w-full rounded-md shadow-md bg-cover bg-center',
-              'h-56 sm:h-72 md:h-96 lg:h-full', // <-- key fix
-              // OR: 'aspect-[16/9] lg:aspect-auto lg:h-full' if you prefer aspect ratio
+              'relative w-full rounded-md shadow-md overflow-hidden',
+              'h-56 sm:h-72 md:h-96 lg:h-full',
             ].join(' ')}
-            style={{ backgroundImage: "url('/images/works/houseinsquare4.jpg')" }}
-            aria-label="About us hero"
-            role="img"
-          />
+          >
+            <Image
+              src="/images/works/houseinsquare4.jpg"
+              alt="About us hero"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+              loading="lazy"
+            />
+          </div>
         </div>
 
         {/* Right Section - Content */}

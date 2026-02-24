@@ -14,7 +14,8 @@
     "static": "npm run build && npm run export",
     "preview:static": "npx serve out -p 3000",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "airtable": "^0.12.2",
@@ -32,10 +33,17 @@
     "eslint": "^8.51.0",
     "eslint-config-next": "^14.0.0",
     "postcss": "^8.4.31",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.3.0",
     "typescript": "^5.2.0"
   },
-  "keywords": ["portfolio", "design", "architecture", "airtable", "cms"],
+  "keywords": [
+    "portfolio",
+    "design",
+    "architecture",
+    "airtable",
+    "cms"
+  ],
   "author": "Design Department",
   "license": "MIT"
 }

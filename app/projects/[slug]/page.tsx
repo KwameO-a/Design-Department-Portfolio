@@ -214,6 +214,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 alt={project.title}
                 width={1600}
                 height={1200}
+                sizes="(max-width: 1024px) 100vw, 58vw"
                 className="h-full w-full object-cover"
                 priority
               />
@@ -233,6 +234,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     alt={`${project.title} lead`}
                     width={1600}
                     height={725}
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    loading="lazy"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -259,6 +262,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         alt={`${project.title} ${i + 1}`}
                         width={800}
                         height={600}
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        loading="lazy"
                         className="h-full w-full object-cover"
                       />
                     </div>
@@ -277,6 +282,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     alt={`${project.title} ${i + 1}`}
                     width={800}
                     height={600}
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    loading="lazy"
                     className="h-full w-full object-cover"
                   />
                 </div>

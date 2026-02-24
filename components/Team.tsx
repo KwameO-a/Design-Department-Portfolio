@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Team() {
   return (
@@ -17,11 +18,13 @@ export default function Team() {
         {/* Top profiles */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20 md:mb-24 justify-items-center">
           <div className="w-full max-w-md flex flex-col items-center text-center">
-            <div className="w-full bg-white flex items-center justify-center h-[420px] sm:h-[480px] md:h-[560px] rounded-sm">
-              <img
+            <div className="w-full bg-white flex items-center justify-center h-[420px] sm:h-[480px] md:h-[560px] rounded-sm relative">
+              <Image
                 src="/images/victor.png"
                 alt="Victor Owusu-Sekyere"
-                className="max-h-full max-w-full object-contain"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-contain"
                 loading="lazy"
               />
             </div>
@@ -40,11 +43,13 @@ export default function Team() {
           </div>
 
           <div className="w-full max-w-md flex flex-col items-center text-center">
-            <div className="w-full bg-white flex items-center justify-center h-[420px] sm:h-[480px] md:h-[560px] rounded-sm">
-              <img
+            <div className="w-full bg-white flex items-center justify-center h-[420px] sm:h-[480px] md:h-[560px] rounded-sm relative">
+              <Image
                 src="/images/kofi.jpeg"
                 alt="Kofi Dako"
-                className="max-h-full max-w-full object-contain"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-contain"
                 loading="lazy"
               />
             </div>
@@ -76,7 +81,7 @@ export default function Team() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
             {/* 1 */}
             <div className="flex items-start gap-3">
-              <img src="/images/architect.png" alt="Design Studio" className="w-10 h-10 shrink-0" />
+              <Image src="/images/architect.png" alt="Design Studio" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Vincent Hammond</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">Design Studio</p>
@@ -86,7 +91,7 @@ export default function Team() {
 
             {/* 2 */}
             <div className="flex items-start gap-3">
-              <img src="/images/chip.png" alt="Information Technology" className="w-10 h-10 shrink-0" />
+              <Image src="/images/chip.png" alt="Information Technology" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Eugene Osei-Adjapong</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">Information Technology</p>
@@ -96,7 +101,7 @@ export default function Team() {
 
             {/* 3 */}
             <div className="flex items-start gap-3">
-              <img src="/images/cost.jpg" alt="Cost Management" className="w-10 h-10 shrink-0" />
+              <Image src="/images/cost.jpg" alt="Cost Management" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Philip Opare</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">Cost Management & Procurement Dept.</p>
@@ -108,7 +113,7 @@ export default function Team() {
 
             {/* 4 */}
             <div className="flex items-start gap-3">
-              <img src="/images/book.png" alt="Civil & Structural" className="w-10 h-10 shrink-0" />
+              <Image src="/images/book.png" alt="Civil & Structural" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Daniel Sam</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">Civil & Structural Engineering Dept.</p>
@@ -118,7 +123,7 @@ export default function Team() {
 
             {/* 5 */}
             <div className="flex items-start gap-3">
-              <img src="/images/electrical.png" alt="Electrical Engineering" className="w-10 h-10 shrink-0" />
+              <Image src="/images/electrical.png" alt="Electrical Engineering" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Alexander Nartey</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">
@@ -130,7 +135,7 @@ export default function Team() {
 
             {/* 6 */}
             <div className="flex items-start gap-3">
-              <img src="/images/gears.png" alt="Mechanical Engineering" className="w-10 h-10 shrink-0" />
+              <Image src="/images/gears.png" alt="Mechanical Engineering" width={40} height={40} className="shrink-0" loading="lazy" />
               <div className="text-left">
                 <p className="font-bold text-gray-900 leading-tight">Richmond Akoliga</p>
                 <p className="text-[#8b6b52] text-sm leading-tight">Mechanical Engineering Dept.</p>
