@@ -1,10 +1,15 @@
+'use client';
+
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ScrollReveal, TextReveal, BlurImage } from './animations';
+import { getBlur } from '../lib/blur-placeholders';
 
 export default function Contact() {
   return (
     <section id="contact" className="bg-white min-h-screen flex flex-col lg:flex-row">
       {/* Left Column – Logo and Intro Text */}
-      <div className="lg:w-1/3 p-8 flex flex-col justify-center">
+      <ScrollReveal direction="left" className="lg:w-1/3 p-8 flex flex-col justify-center">
         <Image
           src="/images/logo.png"
           alt="Design Department Logo"
@@ -12,6 +17,8 @@ export default function Contact() {
           height={96}
           className="w-48 mb-8 mx-auto lg:mx-0"
           loading="lazy"
+          placeholder="blur"
+          blurDataURL={getBlur('/images/Logo.png')}
         />
         <div className="space-y-4 text-sm text-gray-700 text-justify">
           <p>
@@ -24,79 +31,71 @@ export default function Contact() {
             let's talk about how we can create something exceptional together.
           </p>
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* Center Image */}
-      <div className="lg:w-1/3 relative min-h-[500px]">
-        <Image
+      {/* Center Image with blur-up */}
+      <ScrollReveal direction="up" className="lg:w-1/3 relative min-h-[500px]">
+        <BlurImage
           src="/images/contact-image.JPG"
           alt="Contact showcase"
           fill
           sizes="(max-width: 1024px) 100vw, 33vw"
           className="object-cover object-center"
-          loading="lazy"
+          blurDataURL={getBlur('/images/contact-image.JPG')}
         />
-      </div>
+      </ScrollReveal>
 
-      {/* Right Column – Heading centered, details left-aligned */}
-      <div className="lg:w-1/3 p-8 flex flex-col justify-center items-center">
-        {/* Centered, responsive heading */}
+      {/* Right Column */}
+      <ScrollReveal direction="right" className="lg:w-1/3 p-8 flex flex-col justify-center items-center">
         <div className="text-center">
-          <h2
-            className="font-bold tracking-widest mb-2 leading-none
-                       text-3xl sm:text-4xl md:text-5xl"
+          <TextReveal
+            as="h2"
+            variant="slide-up"
+            className="font-bold tracking-widest mb-2 leading-none text-3xl sm:text-4xl md:text-5xl"
             style={{ color: '#8b6b52' }}
           >
             OUR
-          </h2>
-          <h2
-            className="font-bold tracking-widest leading-tight
-                       text-5xl sm:text-6xl md:text-7xl"
+          </TextReveal>
+          <TextReveal
+            as="h2"
+            variant="slide-up"
+            delay={0.15}
+            className="font-bold tracking-widest leading-tight text-5xl sm:text-6xl md:text-7xl"
             style={{ color: '#8b6b52' }}
           >
             CONTACT
-          </h2>
+          </TextReveal>
         </div>
 
-        {/* Left-aligned details; block stays centered */}
+        {/* Contact details with hover microinteractions */}
         <div className="mt-8 w-full max-w-xs sm:max-w-sm mx-auto text-left text-gray-800 text-sm space-y-4">
-          {/* Phone 1 */}
-          <a href="tel:+233501369226" className="flex items-center gap-3 group">
-            <Image src="/images/call.png" alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100" />
-            <span className="underline-offset-4 group-hover:underline">
-              +233 50 136 9226
-            </span>
-          </a>
+          {[
+            { href: 'tel:+233501369226', icon: '/images/call.png', text: '+233 50 136 9226' },
+            { href: 'tel:+233501369074', icon: '/images/call.png', text: '+233 50 136 9074' },
+            { href: 'mailto:business@designdepartment.work', icon: '/images/icons8-email-50.png', text: 'business@designdepartment.work' },
+          ].map((item) => (
+            <motion.a
+              key={item.text}
+              href={item.href}
+              className="flex items-center gap-3 group"
+              whileHover={{ x: 6 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            >
+              <Image src={item.icon} alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100 transition-opacity" />
+              <span className="underline-offset-4 group-hover:underline">{item.text}</span>
+            </motion.a>
+          ))}
 
-          {/* Phone 2 */}
-          <a href="tel:+233501369074" className="flex items-center gap-3 group">
-            <Image src="/images/call.png" alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100" />
-            <span className="underline-offset-4 group-hover:underline">
-              +233 50 136 9074
-            </span>
-          </a>
-
-          {/* Email */}
-          <a href="mailto:business@designdepartment.work" className="flex items-center gap-3 group">
-            <Image
-              src="/images/icons8-email-50.png"
-              alt=""
-              width={20}
-              height={20}
-              className="opacity-80 group-hover:opacity-100"
-            />
-            <span className="underline-offset-4 group-hover:underline">
-              business@designdepartment.work
-            </span>
-          </a>
-
-          {/* Location */}
-          <div className="flex items-center gap-3">
+          <motion.div
+            className="flex items-center gap-3"
+            whileHover={{ x: 6 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          >
             <Image src="/images/location.png" alt="" width={20} height={20} className="opacity-80" />
             <span>Accra, Ghana</span>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

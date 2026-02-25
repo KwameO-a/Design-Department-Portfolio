@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
+import { getBlur } from '@/lib/blur-placeholders';
 
 type Project = {
   title: string;
@@ -15,7 +16,7 @@ type Project = {
   gallery?: string[];
 };
 
-/** ✅ Local “DB” — build-time data source */
+/** ✅ Local "DB" — build-time data source */
 const DB: Record<string, Project> = {
   'aster-azalea': {
     title: 'Aster & Azalea I',
@@ -31,7 +32,7 @@ const DB: Record<string, Project> = {
       body: [
         'A quiet invitation unfolds upon entry, where open spaces drift between living, dining, and kitchen, bathed in natural light.',
         'Framed by sweeping glass, the heart of the home reveals a tranquil courtyard pool embraced by gardens, blurring the line between shelter and sky.',
-        'Every corner of the twin homes whispers calm: light dances, materials breathe, and nature finds its way in. Here, architecture doesn’t just house life; it frames moments, fosters stillness, and offers a sanctuary where modern living meets timeless peace.',
+        'Every corner of the twin homes whispers calm: light dances, materials breathe, and nature finds its way in. Here, architecture doesn\u2019t just house life; it frames moments, fosters stillness, and offers a sanctuary where modern living meets timeless peace.',
       ],
       tiles: [
         '/images/works/aster3.PNG',
@@ -50,7 +51,7 @@ const DB: Record<string, Project> = {
     subtitle: 'Private Residence | Accra, Ghana',
     hero: '/images/works/houseinsquare1.jpg',
     intro: [
-      'The House In Squares embraces a minimalist architectural language rooted in texture and form. The home’s bold geometry and monolithic appearance are softened by the natural warmth of its rammed-earth inspired façade, blending harmoniously with the landscape. The architecture prioritizes simplicity and sustainability. A restrained material palette, warm-toned walls, raw concrete accents, and natural stone, grounds the building in its environment while enhancing thermal performance. Deep window reveals frame curated views and shade the interiors, while carefully placed openings invite daylight and cross-ventilation.',
+      'The House In Squares embraces a minimalist architectural language rooted in texture and form. The home\u2019s bold geometry and monolithic appearance are softened by the natural warmth of its rammed-earth inspired façade, blending harmoniously with the landscape. The architecture prioritizes simplicity and sustainability. A restrained material palette, warm-toned walls, raw concrete accents, and natural stone, grounds the building in its environment while enhancing thermal performance. Deep window reveals frame curated views and shade the interiors, while carefully placed openings invite daylight and cross-ventilation.',
     ],
     section2: {
       leadImage: '/images/works/houseinsquare5.png',
@@ -70,7 +71,7 @@ const DB: Record<string, Project> = {
     subtitle: 'Town Houses | Accra, Ghana',
     hero: '/images/works/astera1.jpg',
     intro: [
-      'Rooted in the earth and shaped by contemporary sensibilities, the Twin Houses are expressed through rammed earth walls that bring warmth, texture, and a sense of permanence to the architecture. Clean lines, open volumes, and a seamless relationship with nature define the design, while the materiality grounds the home in the context of Accra’s climate and landscape. At the heart of each home is a central courtyard, an inwardlooking sanctuary featuring a still pool, enveloped by lush vegetation and calming lounging areas.',
+      'Rooted in the earth and shaped by contemporary sensibilities, the Twin Houses are expressed through rammed earth walls that bring warmth, texture, and a sense of permanence to the architecture. Clean lines, open volumes, and a seamless relationship with nature define the design, while the materiality grounds the home in the context of Accra\u2019s climate and landscape. At the heart of each home is a central courtyard, an inwardlooking sanctuary featuring a still pool, enveloped by lush vegetation and calming lounging areas.',
     ],
     section2: {
       leadImage: '/images/works/astera2.jpg',
@@ -114,12 +115,12 @@ const DB: Record<string, Project> = {
     subtitle: 'Beach Resort | Gomoa, Ghana',
     hero: '/images/works/kenya1.jpg',
     intro: [
-      'Rising with quiet strength against the Kenyan sky, this house stands as a dialogue between art and permanence. Inspired by Michelangelo’s mastery of form, it is less a dwelling than a sculpture in which one may live— each line, each shadow, chiseling space with intention.',
+      'Rising with quiet strength against the Kenyan sky, this house stands as a dialogue between art and permanence. Inspired by Michelangelo\u2019s mastery of form, it is less a dwelling than a sculpture in which one may live\u2014 each line, each shadow, chiseling space with intention.',
     ],
     section2: {
       leadImage: '/images/works/iaa2.jpg',
       body: [
-        'Its planes stretch outward like the reach of a fresco, framing earth and horizon, while its columns lift the weight of stone with grace, a nod to the timeless language of the Renaissance,reinterpreted here in modern rhythm. Natural, hardwearing materials root it deeply in its land. Stone, timber, and textured concrete endure the seasons, bearing the touch of time as beautifully as marble once bore the sculptor’s hand. The house does not hide its strength— it celebrates it, its surfaces weathering into poetry with every sun and rain.',
+        'Its planes stretch outward like the reach of a fresco, framing earth and horizon, while its columns lift the weight of stone with grace, a nod to the timeless language of the Renaissance,reinterpreted here in modern rhythm. Natural, hardwearing materials root it deeply in its land. Stone, timber, and textured concrete endure the seasons, bearing the touch of time as beautifully as marble once bore the sculptor\u2019s hand. The house does not hide its strength\u2014 it celebrates it, its surfaces weathering into poetry with every sun and rain.',
       ],
       tiles: [
         '/images/works/iaa3.jpg',
@@ -138,7 +139,7 @@ const DB: Record<string, Project> = {
     subtitle: 'Residential | Accra, Ghana',
     hero: '/images/works/accra.jpg',
     intro: [
-      'At The Design Department, every project is a journey of discovery — merging creativity with context-sensitive design.',
+      'At The Design Department, every project is a journey of discovery \u2014 merging creativity with context-sensitive design.',
     ],
     gallery: [
       '/images/works/city.jpg',
@@ -152,16 +153,14 @@ const DB: Record<string, Project> = {
 };
 
 /* ---------- Static-export settings for Next (app router) ---------- */
-export const dynamic = 'force-static';   // ensure this page is statically rendered
-export const dynamicParams = false;      // only the params returned below are valid
-export const revalidate = false;         // no ISR for export
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const revalidate = false;
 
-// Prebuild all valid slugs so `output: 'export'` succeeds
 export async function generateStaticParams() {
   return Object.keys(DB).map((slug) => ({ slug }));
 }
 
-// Optional: nice titles per project
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const p = DB[params.slug];
   if (!p) return {};
@@ -175,13 +174,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Use dark links on a light background */}
       <Header variant="dark" />
 
       <main className="mx-auto w-full max-w-7xl px-6 pt-28 pb-24 text-[#8B6B52]">
         {/* ---------- Section 1: Title + Hero ---------- */}
         <section className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-          {/* Left: Title + copy */}
           <div className="lg:col-span-5 z-10">
             <h1
               className="
@@ -206,7 +203,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          {/* Right: Hero */}
           <div className="lg:col-span-7">
             <div className="mb-5 aspect-[4/3] overflow-hidden rounded-lg">
               <Image
@@ -217,16 +213,17 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="h-full w-full object-cover"
                 priority
+                placeholder="blur"
+                blurDataURL={getBlur(project.hero)}
               />
             </div>
           </div>
         </section>
 
-        {/* ---------- Section 2: Narrative band (or fallback gallery) ---------- */}
+        {/* ---------- Section 2 ---------- */}
         {project.section2 ? (
           <section className="mt-12 border-t border-black/10 pt-10">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-              {/* Wide lead image (left) */}
               <div className="lg:col-span-7">
                 <div className="aspect-[2.2/1] overflow-hidden rounded-lg">
                   <Image
@@ -237,11 +234,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     sizes="(max-width: 1024px) 100vw, 58vw"
                     loading="lazy"
                     className="h-full w-full object-cover"
+                    placeholder="blur"
+                    blurDataURL={getBlur(project.section2.leadImage)}
                   />
                 </div>
               </div>
 
-              {/* Narrative text (right) */}
               <div className="lg:col-span-5">
                 <div className="space-y-4">
                   {project.section2.body.map((para, i) => (
@@ -252,7 +250,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </div>
               </div>
 
-              {/* Tiles row */}
               <div className="lg:col-span-12 mt-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {project.section2.tiles.map((src, i) => (
@@ -265,6 +262,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         sizes="(max-width: 768px) 50vw, 25vw"
                         loading="lazy"
                         className="h-full w-full object-cover"
+                        placeholder="blur"
+                        blurDataURL={getBlur(src)}
                       />
                     </div>
                   ))}
@@ -285,6 +284,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     sizes="(max-width: 768px) 50vw, 33vw"
                     loading="lazy"
                     className="h-full w-full object-cover"
+                    placeholder="blur"
+                    blurDataURL={getBlur(src)}
                   />
                 </div>
               ))}

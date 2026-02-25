@@ -96,6 +96,12 @@ header nav a:focus-visible {
   }
 }
 
+/* ---------- Shimmer loading skeleton ---------- */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 /* ---------- DO NOT HIDE THE HEADER (removed the old kill-switch) ---------- */
 /* If you ever need to debug a rogue header again, add temporary rules locally,
    but keep globals.css clean so your header remains visible everywhere. */

@@ -15,7 +15,8 @@
     "preview:static": "npx serve out -p 3000",
     "start": "next start",
     "lint": "next lint",
-    "optimize-images": "node scripts/optimize-images.mjs"
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "generate-blur": "node scripts/generate-blur-placeholders.mjs"
   },
   "dependencies": {
     "airtable": "^0.12.2",

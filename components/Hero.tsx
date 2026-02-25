@@ -1,39 +1,58 @@
-import Image from "next/image";
+'use client';
+
+import { ParallaxImage } from './animations';
+import { getBlur } from '../lib/blur-placeholders';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Optimized Background Image (no blur, no scale) */}
-      <Image
-        src="/images/Hero.png"       // keep your original; Next will serve AVIF/WebP if enabled
+      {/* Parallax background with blur placeholder */}
+      <ParallaxImage
+        src="/images/Hero.png"
         alt="Hero background"
-        fill                          // makes the image cover the section
-        priority                      // only do this on your top hero/LCP image
-        sizes="100vw"                 // tell the browser the image will occupy full viewport width
-        quality={90}                  // good default; tweak if needed
-        className="object-cover object-center select-none pointer-events-none"
-        // Optional: show an instant placeholder
-        // placeholder="blur"
-        // blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB..."  // tiny 1x1
+        speed={0.15}
+        priority
+        sizes="100vw"
+        quality={90}
+        blurDataURL={getBlur('/images/Hero.png')}
+        className="absolute inset-0"
+        overlay={0.3}
       />
 
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black/30" />
-
-      {/* Content */}
+      {/* Content — animated entrance */}
       <div className="relative z-10 text-center text-white px-4">
-        {/* Example title block (uncomment and edit as needed) */}
-        {/* <div className="inline-block border-2 border-white p-8 mb-6">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-wider mb-2">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          className="inline-block border-2 border-white/80 p-8 mb-6"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-5xl md:text-7xl font-bold tracking-wider mb-2"
+          >
             ARCHITECTURE
-          </h1>
-          <p className="text-lg md:text-xl tracking-widest">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-lg md:text-xl tracking-widest"
+          >
             AND DESIGN PORTFOLIO
-          </p>
-        </div>
-        <div className="text-2xl md:text-3xl font-light tracking-widest">
-          MMXXV
-        </div> */}
+          </motion.p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1, ease: 'easeOut' }}
+          className="text-2xl md:text-3xl font-light tracking-widest"
+        >
+          MMXXVI
+        </motion.div>
       </div>
     </section>
   );

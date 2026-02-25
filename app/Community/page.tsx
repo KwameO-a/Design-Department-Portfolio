@@ -4,6 +4,8 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getBlur } from '../../lib/blur-placeholders';
+import { ScrollReveal, TextReveal } from '../../components/animations';
 
 const DARK = '#0D2B2B';
 const ACCENT = '#8B6B52';
@@ -48,6 +50,8 @@ export default function CommunityPlusPage() {
           priority
           sizes="100vw"
           className="object-cover"
+          placeholder="blur"
+          blurDataURL={getBlur(HERO_IMG)}
         />
         <div className="absolute inset-0 bg-black/25" />
         <HeaderLogo />
@@ -70,7 +74,7 @@ export default function CommunityPlusPage() {
       {/* INTRO */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto grid w-full max-w-[1100px] gap-10 md:grid-cols-2 items-center">
-          <div>
+          <ScrollReveal direction="left">
             <h2
               className="mb-1 flex items-center font-extrabold"
               style={{ color: BRAND, fontSize: 'clamp(30px,4.2vw,46px)', gap: '6px' }}
@@ -85,8 +89,10 @@ export default function CommunityPlusPage() {
               with socially driven institutions, NGOs, and local stakeholders to catalyse lasting change, empowering communities to shape a
               future of dignity, opportunity, and shared prosperity.
             </p>
-          </div>
-          <ContentImage src={SPLIT_IMG} alt="Community split image" />
+          </ScrollReveal>
+          <ScrollReveal direction="right">
+            <ContentImage src={SPLIT_IMG} alt="Community split image" />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -376,6 +382,8 @@ function ContentImage({ src, alt }: { src: string; alt: string }) {
         loading="lazy"
         sizes="(min-width: 768px) 550px, 100vw"
         className="object-cover"
+        placeholder="blur"
+        blurDataURL={getBlur(src)}
         onError={(e) => {
           const el = e.currentTarget as HTMLImageElement;
           el.src =
