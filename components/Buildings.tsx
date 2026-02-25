@@ -126,7 +126,15 @@ export default function Buildings() {
             const col = Math.max(2, Math.min(12, layout.col));
             const rows = Math.max(1, Math.min(4, layout.rows));
 
-            const colClass =
+            // md = 6-col grid, lg = 12-col grid — need classes for both
+            const mdColClass =
+              col >= 10 ? 'md:col-span-6'
+              : col >= 8  ? 'md:col-span-4'
+              : col >= 6  ? 'md:col-span-3'
+              : col >= 4  ? 'md:col-span-2'
+              : 'md:col-span-2';
+
+            const lgColClass =
               col === 12 ? 'lg:col-span-12'
               : col === 10 ? 'lg:col-span-10'
               : col === 8  ? 'lg:col-span-8'
@@ -134,6 +142,8 @@ export default function Buildings() {
               : col === 5  ? 'lg:col-span-5'
               : col === 4  ? 'lg:col-span-4'
               : 'lg:col-span-3';
+
+            const colClass = `${mdColClass} ${lgColClass}`;
 
             const rowClass =
               rows === 4 ? 'md:row-span-4'
