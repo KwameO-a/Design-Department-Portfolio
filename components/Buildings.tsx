@@ -16,8 +16,8 @@ type Project = {
 
 const PROJECTS: Project[] = [
   { slug: 'aster-azalea',      title: 'Aster & Azalea I',  location: 'Accra, Ghana',     cover: '/images/works/aster1.PNG' },
-  { slug: 'house-in-squares',  title: 'House in Squares',  location: 'Cincinnati, USA',  cover: '/images/works/houseinsquare4.jpg' },
-  { slug: 'aster-azalea1',     title: 'Aster & Azalea II', location: 'New York, USA',    cover: '/images/works/astera1.jpg' },
+  { slug: 'house-in-squares',  title: 'House in Squares',  location: 'Accra, Ghana',     cover: '/images/works/houseinsquare4.jpg' },
+  { slug: 'aster-azalea1',     title: 'Aster & Azalea II', location: 'Accra, Ghana',     cover: '/images/works/astera1.jpg' },
   { slug: 'iaa',               title: 'IAA Grande',        location: 'Gomoa, Ghana',     cover: '/images/works/iaa1.jpg' },
   { slug: 'kenya',             title: 'Michelangelo',      location: 'Kenya',            cover: '/images/works/kenya1.jpg' },
 ];
