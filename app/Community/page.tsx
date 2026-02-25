@@ -348,7 +348,7 @@ function HeaderLogo() {
     <div className="pointer-events-none absolute right-0 top-0 z-10 p-4 md:p-6 lg:p-8">
       <Link href="/" aria-label="Home" className="pointer-events-auto inline-flex shrink-0 items-center">
         <Image
-          src="/images/logo.png"
+          src="/images/Logo.png"
           alt="Design Department"
           width={280}
           height={140}

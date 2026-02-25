@@ -45,8 +45,11 @@ export default function ParallaxImage({
 
   const y = useTransform(scrollYProgress, [0, 1], [`-${speed * 100}%`, `${speed * 100}%`]);
 
+  // Don't add 'relative' when caller already passes an absolute/fixed position
+  const hasPosition = /\b(absolute|fixed|sticky)\b/.test(className);
+
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+    <div ref={ref} className={`${hasPosition ? '' : 'relative'} overflow-hidden ${className}`}>
       <motion.div style={{ y }} className="absolute inset-[-20%]">
         <Image
           src={src}

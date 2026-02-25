@@ -11,7 +11,7 @@ export default function Contact() {
       {/* Left Column – Logo and Intro Text */}
       <ScrollReveal direction="left" className="lg:w-1/3 p-8 flex flex-col justify-center">
         <Image
-          src="/images/logo.png"
+          src="/images/Logo.png"
           alt="Design Department Logo"
           width={192}
           height={96}

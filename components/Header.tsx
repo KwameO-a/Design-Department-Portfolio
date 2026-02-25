@@ -105,7 +105,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
           className="ml-auto inline-flex shrink-0 items-center"
         >
           <Image
-            src="/images/logo.png"
+            src="/images/Logo.png"
             alt="Design Department"
             width={280}
             height={140}
