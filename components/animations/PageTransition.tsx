@@ -2,13 +2,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { type ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 
 interface PageTransitionProps {
   children: ReactNode;
 }
 
-export default function PageTransition({ children }: PageTransitionProps) {
+function AnimatedContent({ children }: PageTransitionProps) {
   const pathname = usePathname();
 
   return (
@@ -26,5 +26,13 @@ export default function PageTransition({ children }: PageTransitionProps) {
         {children}
       </motion.div>
     </AnimatePresence>
+  );
+}
+
+export default function PageTransition({ children }: PageTransitionProps) {
+  return (
+    <Suspense fallback={<>{children}</>}>
+      <AnimatedContent>{children}</AnimatedContent>
+    </Suspense>
   );
 }
