@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
+import { ScrollReveal, TextReveal } from './animations';
 import { getBlur } from '../lib/blur-placeholders';
 
 type Project = {
@@ -48,47 +50,68 @@ export default function Buildings() {
       <div className="mx-auto w-full max-w-7xl px-6 pt-24 md:pt-28 lg:pt-32 pb-16">
         {/* Intro + Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-          <div className="md:col-span-5">
+          {/* Left: heading + paragraph — slides in from left */}
+          <ScrollReveal direction="left" className="md:col-span-5">
             <div className="space-y-1">
-              <div className="text-2xl font-extrabold tracking-[0.35em] text-[#DDBFA9]">
+              <TextReveal
+                as="div"
+                variant="fade-up"
+                className="text-2xl font-extrabold tracking-[0.35em] text-[#DDBFA9]"
+              >
                 OUR
-              </div>
-              <div className="text-4xl md:text-5xl font-extrabold tracking-[0.25em] text-[#DDBFA9]">
+              </TextReveal>
+              <TextReveal
+                as="div"
+                variant="fade-up"
+                delay={0.1}
+                className="text-4xl md:text-5xl font-extrabold tracking-[0.25em] text-[#DDBFA9]"
+              >
                 PROJECTS
-              </div>
-              <div className="text-xs md:text-sm uppercase tracking-[0.25em] text-[#C9A98F]">
+              </TextReveal>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="text-xs md:text-sm uppercase tracking-[0.25em] text-[#C9A98F]"
+              >
                 and collaborations
-              </div>
+              </motion.div>
             </div>
 
-            <p className="mt-6 text-sm md:text-base leading-relaxed text-white/80 text-justify">
-              At The Design Department, every project is a journey of discovery — an
-              opportunity to merge creativity, functionality, and purpose into spaces and
-              experiences that resonate. We approach each brief with fresh eyes,
-              embracing the unique context, culture, and aspirations that shape it. Our
-              portfolio spans diverse sectors, from residential and hospitality to
-              commercial and cultural spaces, reflecting the versatility and depth of our
-              creative team. Each work is the result of collaboration, curiosity, and a
-              commitment to design excellence, where no detail is too small and no idea
-              too ambitious.
-            </p>
-          </div>
+            <ScrollReveal delay={0.2}>
+              <p className="mt-6 text-sm md:text-base leading-relaxed text-white/80 text-justify">
+                At The Design Department, every project is a journey of discovery — an
+                opportunity to merge creativity, functionality, and purpose into spaces and
+                experiences that resonate. We approach each brief with fresh eyes,
+                embracing the unique context, culture, and aspirations that shape it. Our
+                portfolio spans diverse sectors, from residential and hospitality to
+                commercial and cultural spaces, reflecting the versatility and depth of our
+                creative team. Each work is the result of collaboration, curiosity, and a
+                commitment to design excellence, where no detail is too small and no idea
+                too ambitious.
+              </p>
+            </ScrollReveal>
+          </ScrollReveal>
 
-          <div className="hidden md:block md:col-span-7">
+          {/* Right: spotlight tile — slides in from right */}
+          <ScrollReveal direction="right" className="hidden md:block md:col-span-7">
             <SpotlightTile p={spotlight} />
-          </div>
+          </ScrollReveal>
         </div>
 
-        {/* Mobile masonry */}
+        {/* Mobile masonry — staggered fade-in */}
         <section className="block md:hidden mt-6">
           <div className="columns-2 gap-2 [column-fill:_balance]">
-            {PROJECTS.map((p) => (
-              <MasonryTile key={p.slug} p={p} />
+            {PROJECTS.map((p, i) => (
+              <ScrollReveal key={p.slug} delay={i * 0.08}>
+                <MasonryTile p={p} />
+              </ScrollReveal>
             ))}
           </div>
         </section>
 
-        {/* Desktop collage */}
+        {/* Desktop collage — staggered entrance */}
         <section
           className="
             hidden md:grid grid-flow-dense
@@ -98,7 +121,7 @@ export default function Buildings() {
           style={{ gridAutoRows: '140px' }}
           aria-label="Project collage"
         >
-          {GRID_PROJECTS.map((p) => {
+          {GRID_PROJECTS.map((p, i) => {
             const layout = LAYOUT[p.slug] ?? { col: 4, rows: 2 };
             const col = Math.max(2, Math.min(12, layout.col));
             const rows = Math.max(1, Math.min(4, layout.rows));
@@ -118,7 +141,11 @@ export default function Buildings() {
               : rows === 2 ? 'md:row-span-2'
               : 'md:row-span-1';
 
-            return <GridTile key={p.slug} p={p} className={`${colClass} ${rowClass}`} />;
+            return (
+              <ScrollReveal key={p.slug} delay={i * 0.1} className={`${colClass} ${rowClass}`}>
+                <GridTile p={p} className="h-full" />
+              </ScrollReveal>
+            );
           })}
         </section>
       </div>
