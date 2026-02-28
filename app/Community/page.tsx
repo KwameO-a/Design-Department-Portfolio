@@ -14,7 +14,7 @@ const LIGHT = '#D9E4E4';
 
 const HERO_IMG = '/images/CommunityHero.png';
 const SPLIT_IMG = '/images/split.jpg';
-const REJ_IMG   = '/images/2_Classroom Scene 01.png';
+const REJ_IMG   = '/images/classroom.png';
 const DSG_IMG   = '/images/Student.jpg';
 const COL_IMG   = '/images/StudentGroup.JPG';
 
