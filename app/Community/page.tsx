@@ -198,7 +198,7 @@ export default function CommunityPlusPage() {
               meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
             />
             <TeamMember
-              img="/images/kofi.jpeg"
+              img="/images/kofi1.jpeg"
               name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
               meta={<>Strategic Lead — Design Department</>}
@@ -229,7 +229,7 @@ export default function CommunityPlusPage() {
             </div>
             <div className="col-span-4 flex justify-center">
               <TeamMember
-                img="/images/kofi.jpeg"
+                img="/images/kofi1.jpeg"
                 name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
                 meta={<>Strategic Lead — Design Department</>}
