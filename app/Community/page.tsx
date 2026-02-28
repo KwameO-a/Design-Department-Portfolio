@@ -210,8 +210,7 @@ export default function CommunityPlusPage() {
               meta={<>Cost Manager — Design Department</>}
             />
             <TeamMember
-              img="/images/victor.png"
-              inset
+              img="/images/victor1.png"
               name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
               meta={<>Creative Director — Design Department</>}
@@ -255,8 +254,7 @@ export default function CommunityPlusPage() {
             </div>
             <div className="col-start-7 col-span-3 flex justify-center">
               <TeamMember
-                img="/images/victor.png"
-                inset
+                img="/images/victor1.png"
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
