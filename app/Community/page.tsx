@@ -1,11 +1,10 @@
 // app/community-plus/page.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, useCallback, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlur } from '../../lib/blur-placeholders';
-import { ScrollReveal, TextReveal } from '../../components/animations';
 
 const DARK = '#0D2B2B';
 const ACCENT = '#8B6B52';
@@ -26,6 +25,69 @@ const ROLES = [
   { title: 'Project Management',    icon: '/images/Loading.png',    items: ['Programme Coordination', 'Construction / Fabrication Management'] },
   { title: 'Industry Mentorship',   icon: '/images/Mentorship.png', items: ['Programme Curation', 'Team Participation'] },
 ];
+
+/* ——— Lightweight scroll animation (no framer-motion) ——— */
+type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
+
+function FadeIn({
+  children,
+  direction = 'up',
+  delay = 0,
+  duration = 0.6,
+  distance = 40,
+  className = '',
+  once = true,
+}: {
+  children: ReactNode;
+  direction?: Direction;
+  delay?: number;
+  duration?: number;
+  distance?: number;
+  className?: string;
+  once?: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          if (once) obs.unobserve(el);
+        } else if (!once) {
+          setVisible(false);
+        }
+      },
+      { rootMargin: '-80px' }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [once]);
+
+  const tx =
+    direction === 'up'    ? `translateY(${distance}px)` :
+    direction === 'down'  ? `translateY(-${distance}px)` :
+    direction === 'left'  ? `translateX(${distance}px)` :
+    direction === 'right' ? `translateX(-${distance}px)` : 'none';
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : tx,
+        transition: `opacity ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s, transform ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s`,
+        willChange: visible ? 'auto' : 'opacity, transform',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function CommunityPlusPage() {
   const [showTop, setShowTop] = useState(false);
@@ -58,15 +120,19 @@ export default function CommunityPlusPage() {
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="mx-auto w-full max-w-[1100px] text-center">
-            <h1
-              className="font-bold text-white"
-              style={{ fontSize: 'clamp(34px,5.5vw,64px)', letterSpacing: '0.01em' }}
-            >
-              Could we do more together?
-            </h1>
-            <p className="mt-3 text-white/90" style={{ fontSize: 'clamp(14px,2.3vw,18px)' }}>
-              A Communal + Educational Spaces Initiative
-            </p>
+            <FadeIn direction="up" delay={0.3}>
+              <h1
+                className="font-bold text-white"
+                style={{ fontSize: 'clamp(34px,5.5vw,64px)', letterSpacing: '0.01em' }}
+              >
+                Could we do more together?
+              </h1>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.5}>
+              <p className="mt-3 text-white/90" style={{ fontSize: 'clamp(14px,2.3vw,18px)' }}>
+                A Communal + Educational Spaces Initiative
+              </p>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -74,7 +140,7 @@ export default function CommunityPlusPage() {
       {/* INTRO */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto grid w-full max-w-[1100px] gap-10 md:grid-cols-2 items-center">
-          <ScrollReveal direction="left">
+          <FadeIn direction="left">
             <h2
               className="mb-1 flex items-center font-extrabold"
               style={{ color: BRAND, fontSize: 'clamp(30px,4.2vw,46px)', gap: '6px' }}
@@ -84,32 +150,36 @@ export default function CommunityPlusPage() {
             </h2>
             <p className="text-neutral-600 mb-6">Communal + Educational Spaces Initiative</p>
             <p className="text-neutral-800/90 leading-8 text-justify">
-              The <strong>Design Department’s Community Plus Campaign</strong> is dedicated to transforming under-resourced communities by
+              The <strong>Design Department&rsquo;s Community Plus Campaign</strong> is dedicated to transforming under-resourced communities by
               fostering equitable access to quality spaces for learning, growth, and collaboration through architectural design. We partner
               with socially driven institutions, NGOs, and local stakeholders to catalyse lasting change, empowering communities to shape a
               future of dignity, opportunity, and shared prosperity.
             </p>
-          </ScrollReveal>
-          <ScrollReveal direction="right">
+          </FadeIn>
+          <FadeIn direction="right">
             <ContentImage src={SPLIT_IMG} alt="Community split image" />
-          </ScrollReveal>
+          </FadeIn>
         </div>
       </section>
 
       {/* OUR ROLE */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto w-full max-w-[1100px]">
-          <div className="mb-2 flex items-center gap-3">
-            <PlusIcon size={18} />
-            <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
-              Our Role
-            </h3>
-          </div>
-          <p className="text-neutral-600 mb-10">Our Role as your CSR Partner</p>
+          <FadeIn direction="up">
+            <div className="mb-2 flex items-center gap-3">
+              <PlusIcon size={18} />
+              <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+                Our Role
+              </h3>
+            </div>
+            <p className="text-neutral-600 mb-10">Our Role as your CSR Partner</p>
+          </FadeIn>
 
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-0">
             {ROLES.map((r, i) => (
-              <RoleBlock key={r.title} {...r} showSeparator={i !== 0} />
+              <FadeIn key={r.title} direction="up" delay={i * 0.12}>
+                <RoleBlock {...r} showSeparator={i !== 0} />
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -118,7 +188,7 @@ export default function CommunityPlusPage() {
       {/* PRIMARY FOCUS */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto grid w-full max-w-[1100px] gap-10 md:grid-cols-2 items-start">
-          <div>
+          <FadeIn direction="left">
             <h3
               className="mb-1 flex items-center font-extrabold"
               style={{ color: BRAND, fontSize: 'clamp(30px,4.2vw,46px)', gap: '6px' }}
@@ -133,8 +203,10 @@ export default function CommunityPlusPage() {
               <li>+ Design conducive teaching and learning environments for under-resourced schools</li>
               <li>+ Collaborate with well-resourced institutions and schools in impacting disadvantaged communities in West Africa and beyond</li>
             </ul>
-          </div>
-          <ContentImage src={REJ_IMG} alt="Primary focus image" />
+          </FadeIn>
+          <FadeIn direction="right">
+            <ContentImage src={REJ_IMG} alt="Primary focus image" />
+          </FadeIn>
         </div>
       </section>
 
@@ -174,90 +246,102 @@ export default function CommunityPlusPage() {
       {/* TEAM */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto w-full max-w-[1100px]">
-          <div className="mb-4 flex items-center gap-3">
-            <PlusIcon size={18} />
-            <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
-              Our Team
-            </h3>
-          </div>
-          <p className="text-neutral-600 mb-10">Meet the core members of our team</p>
+          <FadeIn direction="up">
+            <div className="mb-4 flex items-center gap-3">
+              <PlusIcon size={18} />
+              <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+                Our Team
+              </h3>
+            </div>
+            <p className="text-neutral-600 mb-10">Meet the core members of our team</p>
+          </FadeIn>
 
           {/* Mobile stack — centered */}
           <div className="md:hidden flex flex-col items-center space-y-10">
-            <TeamMember
-              img="/images/KB.png"
-              name={<>Dr. K. B. <span className="font-semibold">Owusu-Sekyere</span></>}
-              role={<span className="font-semibold" style={{ color: ACCENT }}>Monitoring, Evaluation & Research Lead</span>}
-              meta={<>Development Economist — JOC Consulting Ltd.</>}
-            />
-            <TeamMember
-              img="/images/Zoe1.png"
-              name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
-              role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
-              meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
-            />
-            <TeamMember
-              img="/images/kofi1.jpeg"
-              name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
-              role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
-              meta={<>Strategic Lead — Design Department</>}
-            />
-            <TeamMember
-              img="/images/philip.jpeg"
-              name={<>Philip <span className="font-semibold">Opare</span>, PMP®</>}
-              role={<span className="font-semibold" style={{ color: ACCENT }}>Fund Manager</span>}
-              meta={<>Cost Manager — Design Department</>}
-            />
-            <TeamMember
-              img="/images/victor1.png"
-              name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
-              role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
-              meta={<>Creative Director — Design Department</>}
-            />
-          </div>
-
-          {/* Desktop: row of 3, then 2 centred */}
-          <div className="hidden md:grid grid-cols-12 gap-y-12">
-            <div className="col-span-4 flex justify-center">
+            <FadeIn direction="up" delay={0}>
               <TeamMember
                 img="/images/KB.png"
                 name={<>Dr. K. B. <span className="font-semibold">Owusu-Sekyere</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Monitoring, Evaluation & Research Lead</span>}
                 meta={<>Development Economist — JOC Consulting Ltd.</>}
               />
-            </div>
-            <div className="col-span-4 flex justify-center">
-              <TeamMember
-                img="/images/kofi1.jpeg"
-                name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
-                role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
-                meta={<>Strategic Lead — Design Department</>}
-              />
-            </div>
-            <div className="col-span-4 flex justify-center">
-              <TeamMember
-                img="/images/philip.jpeg"
-                name={<>Philip <span className="font-semibold">Opare</span>, PMP®</>}
-                role={<span className="font-semibold" style={{ color: ACCENT }}>Fund Manager</span>}
-                meta={<>Cost Manager — Design Department</>}
-              />
-            </div>
-            <div className="col-start-3 col-span-3 flex justify-center">
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1}>
               <TeamMember
                 img="/images/Zoe1.png"
                 name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
                 meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
               />
-            </div>
-            <div className="col-start-7 col-span-3 flex justify-center">
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1}>
+              <TeamMember
+                img="/images/kofi1.jpeg"
+                name={<>Kofi <span className="font-semibold">Dako</span>, PMP&reg;</>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
+                meta={<>Strategic Lead — Design Department</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1}>
+              <TeamMember
+                img="/images/philip.jpeg"
+                name={<>Philip <span className="font-semibold">Opare</span>, PMP&reg;</>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Fund Manager</span>}
+                meta={<>Cost Manager — Design Department</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1}>
               <TeamMember
                 img="/images/victor1.png"
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
               />
-            </div>
+            </FadeIn>
+          </div>
+
+          {/* Desktop: row of 3, then 2 centred */}
+          <div className="hidden md:grid grid-cols-12 gap-y-12">
+            <FadeIn direction="up" delay={0} className="col-span-4 flex justify-center">
+              <TeamMember
+                img="/images/KB.png"
+                name={<>Dr. K. B. <span className="font-semibold">Owusu-Sekyere</span></>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Monitoring, Evaluation & Research Lead</span>}
+                meta={<>Development Economist — JOC Consulting Ltd.</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.12} className="col-span-4 flex justify-center">
+              <TeamMember
+                img="/images/kofi1.jpeg"
+                name={<>Kofi <span className="font-semibold">Dako</span>, PMP&reg;</>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
+                meta={<>Strategic Lead — Design Department</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.24} className="col-span-4 flex justify-center">
+              <TeamMember
+                img="/images/philip.jpeg"
+                name={<>Philip <span className="font-semibold">Opare</span>, PMP&reg;</>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Fund Manager</span>}
+                meta={<>Cost Manager — Design Department</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1} className="col-start-3 col-span-3 flex justify-center">
+              <TeamMember
+                img="/images/Zoe1.png"
+                name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
+                meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
+              />
+            </FadeIn>
+            <FadeIn direction="up" delay={0.22} className="col-start-7 col-span-3 flex justify-center">
+              <TeamMember
+                img="/images/victor1.png"
+                name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
+                role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
+                meta={<>Creative Director — Design Department</>}
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -265,13 +349,15 @@ export default function CommunityPlusPage() {
       {/* CLOSING CTA */}
       <section className="px-6 py-14" style={{ backgroundColor: DARK }}>
         <div className="mx-auto w-full max-w-[1100px] text-center">
-          <h3 className="font-semibold" style={{ color: ACCENT, fontSize: 'clamp(22px,3vw,28px)' }}>
-            Collaborate with us
-          </h3>
-          <p className="mx-auto mt-3 max-w-3xl" style={{ color: LIGHT, lineHeight: 1.8 }}>
-            “Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
-            become the architects of lasting change.”
-          </p>
+          <FadeIn direction="up" delay={0.1}>
+            <h3 className="font-semibold" style={{ color: ACCENT, fontSize: 'clamp(22px,3vw,28px)' }}>
+              Collaborate with us
+            </h3>
+            <p className="mx-auto mt-3 max-w-3xl" style={{ color: LIGHT, lineHeight: 1.8 }}>
+              &ldquo;Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
+              become the architects of lasting change.&rdquo;
+            </p>
+          </FadeIn>
         </div>
       </section>
 
@@ -280,7 +366,7 @@ export default function CommunityPlusPage() {
         <div className="max-w-6xl md:max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between">
             <div className="mt-6 md:mt-0 text-sm text-gray-300 text-center md:text-right w-full md:w-auto">
-              © {new Date().getFullYear()} All rights reserved
+              &copy; {new Date().getFullYear()} All rights reserved
             </div>
           </div>
 
@@ -322,7 +408,7 @@ export default function CommunityPlusPage() {
           style={{ backgroundColor: ACCENT }}
           aria-label="Back to top"
         >
-          ↑
+          &uarr;
         </button>
       )}
     </main>
@@ -453,31 +539,37 @@ function Strategy({ title, bullets, img }: { title: string; bullets: string[]; i
   return (
     <section className="px-6 py-16 bg-white">
       <div className="mx-auto w-full max-w-[1100px]">
-        <div className="mb-6 flex items-center gap-3">
-          <PlusIcon size={18} />
-          <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
-            {title}
-          </h3>
-        </div>
-        <p className="text-neutral-600 mb-6">Communal + Educational Spaces</p>
-        <div className="grid gap-10 md:grid-cols-2 items-start">
-          <div>
-            <h4 className="font-semibold text-neutral-800 mb-2">Strategy</h4>
-            <p className="text-neutral-800/90 leading-8 mb-5">
-              We aim to revitalise and improve spaces through human-centred, context-specific, and sustainable design strategies. This
-              includes:
-            </p>
-            <ul className="space-y-3 text-neutral-800/90">
-              {bullets.map((b) => (
-                <li key={b} className="flex items-start gap-2">
-                  <span className="mt-2 block h-[6px] w-[6px] rounded-full" style={{ backgroundColor: ACCENT }} />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+        <FadeIn direction="up">
+          <div className="mb-6 flex items-center gap-3">
+            <PlusIcon size={18} />
+            <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+              {title}
+            </h3>
           </div>
+          <p className="text-neutral-600 mb-6">Communal + Educational Spaces</p>
+        </FadeIn>
+        <div className="grid gap-10 md:grid-cols-2 items-start">
+          <FadeIn direction="left">
+            <div>
+              <h4 className="font-semibold text-neutral-800 mb-2">Strategy</h4>
+              <p className="text-neutral-800/90 leading-8 mb-5">
+                We aim to revitalise and improve spaces through human-centred, context-specific, and sustainable design strategies. This
+                includes:
+              </p>
+              <ul className="space-y-3 text-neutral-800/90">
+                {bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <span className="mt-2 block h-[6px] w-[6px] rounded-full" style={{ backgroundColor: ACCENT }} />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
 
-          <ContentImage src={img} alt={`${title} image`} />
+          <FadeIn direction="right">
+            <ContentImage src={img} alt={`${title} image`} />
+          </FadeIn>
         </div>
       </div>
     </section>
@@ -486,7 +578,7 @@ function Strategy({ title, bullets, img }: { title: string; bullets: string[]; i
 
 type FitType = 'cover' | 'contain';
 
-/** Team avatar fetched at 224×224 (2×) but displayed at 112×112 for retina crispness */
+/** Team avatar fetched at 224x224 (2x) but displayed at 112x112 for retina crispness */
 function TeamMember({
   img, name, role, meta, fit = 'cover', inset = false, bg,
 }: {
