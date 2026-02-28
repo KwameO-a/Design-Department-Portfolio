@@ -191,8 +191,7 @@ export default function CommunityPlusPage() {
               meta={<>Development Economist — JOC Consulting Ltd.</>}
             />
             <TeamMember
-              img="/images/Zoe.png"
-              inset
+              img="/images/Zoe1.png"
               name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
               meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
@@ -245,8 +244,7 @@ export default function CommunityPlusPage() {
             </div>
             <div className="col-start-3 col-span-3 flex justify-center">
               <TeamMember
-                img="/images/Zoe.png"
-                inset
+                img="/images/Zoe1.png"
                 name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
                 meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
