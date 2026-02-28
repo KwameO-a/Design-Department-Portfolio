@@ -505,7 +505,7 @@ function TeamMember({
   return (
     <article className="text-center max-w-[280px] mx-auto">
       <div
-        className="mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full ring-1 ring-neutral-200 flex items-center justify-center bg-neutral-100"
+        className="mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full ring-1 ring-neutral-200 flex items-center justify-center bg-white"
         style={bg ? { backgroundColor: bg } : undefined}
       >
         <Image
