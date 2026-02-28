@@ -192,16 +192,12 @@ export default function CommunityPlusPage() {
             />
             <TeamMember
               img="/images/Zoe.png"
-              fit="cover"
-              position="[50%_58%]"
               name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
               meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
             />
             <TeamMember
               img="/images/kofi.jpeg"
-              fit="cover"
-              position="[50%_30%]"
               name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
               meta={<>Strategic Lead — Design Department</>}
@@ -214,8 +210,6 @@ export default function CommunityPlusPage() {
             />
             <TeamMember
               img="/images/victor.png"
-              fit="cover"
-              position="[50%_42%]"
               name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
               meta={<>Creative Director — Design Department</>}
@@ -235,8 +229,6 @@ export default function CommunityPlusPage() {
             <div className="col-span-4 flex justify-center">
               <TeamMember
                 img="/images/kofi.jpeg"
-                fit="cover"
-                position="[50%_30%]"
                 name={<>Kofi <span className="font-semibold">Dako</span>, PMP®</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Project Manager</span>}
                 meta={<>Strategic Lead — Design Department</>}
@@ -253,8 +245,6 @@ export default function CommunityPlusPage() {
             <div className="col-start-3 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/Zoe.png"
-                fit="cover"
-                position="[50%_58%]"
                 name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
                 meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
@@ -263,8 +253,6 @@ export default function CommunityPlusPage() {
             <div className="col-start-7 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/victor.png"
-                fit="cover"
-                position="[50%_42%]"
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
