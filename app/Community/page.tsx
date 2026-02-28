@@ -192,6 +192,7 @@ export default function CommunityPlusPage() {
             />
             <TeamMember
               img="/images/Zoe.png"
+              inset
               name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
               meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
@@ -210,6 +211,7 @@ export default function CommunityPlusPage() {
             />
             <TeamMember
               img="/images/victor.png"
+              inset
               name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
               role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
               meta={<>Creative Director — Design Department</>}
@@ -245,6 +247,7 @@ export default function CommunityPlusPage() {
             <div className="col-start-3 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/Zoe.png"
+                inset
                 name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
                 meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
@@ -253,6 +256,7 @@ export default function CommunityPlusPage() {
             <div className="col-start-7 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/victor.png"
+                inset
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
@@ -488,37 +492,32 @@ type FitType = 'cover' | 'contain';
 
 /** Team avatar fetched at 224×224 (2×) but displayed at 112×112 for retina crispness */
 function TeamMember({
-  img, name, role, meta, fit = 'cover', position = 'center', bg,
+  img, name, role, meta, fit = 'cover', inset = false, bg,
 }: {
   img: string;
   name: React.ReactNode;
   role: React.ReactNode;
   meta: React.ReactNode;
   fit?: FitType;
-  position?: string; // e.g. '[50%_42%]'
+  inset?: boolean;
   bg?: string;
 }) {
   const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover';
-  // Convert Tailwind arbitrary syntax "[50%_30%]" → "50% 30%", or pass through "center"
-  const objectPosition = position.startsWith('[')
-    ? position.slice(1, -1).replace(/_/g, ' ')
-    : position;
 
   return (
     <article className="text-center max-w-[280px] mx-auto">
       <div
-        className="mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full ring-1 ring-neutral-200 flex items-center justify-center"
+        className="mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full ring-1 ring-neutral-200 flex items-center justify-center bg-neutral-100"
         style={bg ? { backgroundColor: bg } : undefined}
       >
         <Image
           src={img}
           alt=""
-          width={224}      // <- 2× intrinsic pixels
-          height={224}     // <- 2× intrinsic pixels
+          width={224}
+          height={224}
           loading="lazy"
           decoding="async"
-          style={{ objectPosition }}
-          className={`h-full w-full ${fitClass}`}
+          className={`${inset ? 'h-[88%] w-[88%] rounded-full' : 'h-full w-full'} ${fitClass} object-center`}
           onError={(e) => {
             const el = e.currentTarget as HTMLImageElement;
             el.src =
