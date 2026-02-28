@@ -511,7 +511,6 @@ function TeamMember({
   bg?: string;
 }) {
   const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover';
-  const posClass = position ? `object-${position}` : '';
 
   return (
     <article className="text-center max-w-[280px] mx-auto">
@@ -526,7 +525,7 @@ function TeamMember({
           height={224}     // <- 2× intrinsic pixels
           loading="lazy"
           decoding="async"
-          className={`h-full w-full ${fitClass} ${posClass}`}
+          className={`h-full w-full ${fitClass} object-center`}
           onError={(e) => {
             const el = e.currentTarget as HTMLImageElement;
             el.src =
