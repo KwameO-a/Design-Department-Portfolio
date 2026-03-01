@@ -18,8 +18,8 @@ const contentItems = [
 export default function Home() { 
   return (
     <>
-      <Hero />
       <ContentGrid items={contentItems} />
+      <Hero />
       <section id="about"><About /></section>
       <section id="services"><Services /></section>
       {/* If you now have a dedicated /projects page, you can remove this next line */}
