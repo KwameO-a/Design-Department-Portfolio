@@ -15,14 +15,14 @@ interface ContentGridProps {
 }
 
 const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
-  const [scrolled, setScrolled] = useState(false);
+  const [morphed, setMorphed] = useState(false);
   const ticking = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 80);
+          setMorphed(window.scrollY > 20);
           ticking.current = false;
         });
         ticking.current = true;
@@ -36,29 +36,50 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
   return (
     <nav
       aria-label="Section navigation"
-      className="fixed top-0 inset-x-0 z-50 transition-all duration-[400ms] ease-in-out"
-      style={{
-        backgroundColor: scrolled
-          ? 'rgba(13, 43, 43, 0.75)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled
-          ? '1px solid rgba(139, 107, 82, 0.3)'
-          : '1px solid transparent',
-        boxShadow: scrolled
-          ? '0 4px 24px rgba(0, 0, 0, 0.25)'
-          : 'none',
-      }}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-[400ms] ease-in-out"
+      style={{ padding: morphed ? '10px 16px' : '0' }}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center px-4 md:px-6 transition-all duration-[400ms]"
-        style={{ height: scrolled ? '56px' : '72px' }}
+      <div
+        className="mx-auto flex items-center transition-all duration-[400ms] ease-in-out"
+        style={{
+          maxWidth: morphed ? '800px' : '100%',
+          borderRadius: morphed ? '9999px' : '0px',
+          backgroundColor: morphed
+            ? 'rgba(13, 43, 43, 0.75)'
+            : 'transparent',
+          backdropFilter: morphed ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: morphed ? 'blur(16px)' : 'none',
+          border: morphed
+            ? '1px solid rgba(139, 107, 82, 0.3)'
+            : '1px solid transparent',
+          boxShadow: morphed
+            ? '0 4px 24px rgba(0, 0, 0, 0.25)'
+            : 'none',
+          padding: morphed ? '6px 16px' : '16px 24px',
+        }}
       >
-        {/* Pill nav links (left) */}
+        {/* Logo (left – hidden on mobile to give pills full width) */}
+        <Link
+          href="/"
+          aria-label="Home"
+          className="hidden md:inline-flex shrink-0 items-center mr-auto"
+        >
+          <Image
+            src="/images/Logo.png"
+            alt="Design Department"
+            width={280}
+            height={140}
+            priority
+            className="w-auto transition-all duration-[400ms]"
+            style={{ height: morphed ? '28px' : '44px' }}
+          />
+        </Link>
+
+        {/* Nav pill links (right) */}
         <div
           className={[
-            'flex items-center min-w-0',
-            'gap-2 md:gap-4',
+            'flex items-center',
+            'gap-2 md:gap-3',
             'overflow-x-auto md:overflow-visible',
             'whitespace-nowrap',
             '[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden',
@@ -72,7 +93,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
                 'shrink-0 inline-flex items-center justify-center',
                 'rounded-full border',
                 'font-semibold text-center',
-                'transition-all duration-200',
+                'transition-all duration-[400ms]',
                 'md:hover:-translate-y-0.5 md:hover:shadow-[0_2px_4px_rgba(0,0,0,0.06)]',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B6B52] focus-visible:ring-offset-2',
                 'focus-visible:ring-offset-[#0D2B2B]',
@@ -81,8 +102,8 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
                 borderColor: '#8B6B52',
                 color: '#8B6B52',
                 backgroundColor: 'transparent',
-                padding: scrolled ? '5px 14px' : '6px 18px',
-                fontSize: scrolled ? '12px' : '13px',
+                padding: morphed ? '4px 12px' : '6px 18px',
+                fontSize: morphed ? '11px' : '13px',
                 transition: 'all 400ms ease-in-out',
               }}
             >
@@ -90,23 +111,6 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
             </a>
           ))}
         </div>
-
-        {/* Logo (right – hidden on mobile to give pills full width) */}
-        <Link
-          href="/"
-          aria-label="Home"
-          className="ml-auto hidden md:inline-flex shrink-0 items-center pl-3"
-        >
-          <Image
-            src="/images/Logo.png"
-            alt="Design Department"
-            width={280}
-            height={140}
-            priority
-            className="w-auto transition-all duration-[400ms]"
-            style={{ height: scrolled ? '36px' : '48px' }}
-          />
-        </Link>
       </div>
     </nav>
   );
