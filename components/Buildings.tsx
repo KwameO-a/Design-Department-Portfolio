@@ -80,19 +80,22 @@ export default function Buildings() {
               </motion.div>
             </div>
 
-            <ScrollReveal delay={0.2}>
-              <p className="mt-6 text-sm md:text-base leading-relaxed text-white/80 text-justify">
-                At The Design Department, every project is a journey of discovery — an
-                opportunity to merge creativity, functionality, and purpose into spaces and
-                experiences that resonate. We approach each brief with fresh eyes,
-                embracing the unique context, culture, and aspirations that shape it. Our
-                portfolio spans diverse sectors, from residential and hospitality to
-                commercial and cultural spaces, reflecting the versatility and depth of our
-                creative team. Each work is the result of collaboration, curiosity, and a
-                commitment to design excellence, where no detail is too small and no idea
-                too ambitious.
-              </p>
-            </ScrollReveal>
+            <ScrollTextFill
+              as="p"
+              fillColor="#DDBFA9"
+              baseColor="rgba(221,191,169,0.18)"
+              className="mt-6 text-sm md:text-base leading-relaxed text-justify"
+            >
+              At The Design Department, every project is a journey of discovery — an
+              opportunity to merge creativity, functionality, and purpose into spaces and
+              experiences that resonate. We approach each brief with fresh eyes,
+              embracing the unique context, culture, and aspirations that shape it. Our
+              portfolio spans diverse sectors, from residential and hospitality to
+              commercial and cultural spaces, reflecting the versatility and depth of our
+              creative team. Each work is the result of collaboration, curiosity, and a
+              commitment to design excellence, where no detail is too small and no idea
+              too ambitious.
+            </ScrollTextFill>
           </ScrollReveal>
 
           {/* Right: spotlight tile — slides in from right */}

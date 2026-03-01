@@ -34,32 +34,24 @@ export default function Services() {
               ABOUT US
             </ScrollTextFill>
 
-            <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
-              <ScrollReveal delay={0.1}>
-                <p className="text-sm">
-                  At The Design Department, we are a dynamic collective of architects, designers, and creative
-                  thinkers dedicated to exploring the intersection between design and the human condition.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.2}>
-                <p className="text-sm">
-                  We believe that design is more than form and function—it is a catalyst for shaping experiences,
-                  inspiring emotion, and enhancing the way people live, work, and connect.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <p className="text-sm">
-                  Our multidisciplinary team thrives on curiosity, collaboration, and innovation, constantly pushing
-                  boundaries to create solutions that are as thoughtful as they are beautiful. From concept to
-                  completion, we approach each project with a sensitivity to context, culture, and the people it serves.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.4}>
-                <p className="text-sm">
-                  Driven by a passion for meaningful design, we aim to craft environments, products, and experiences
-                  that not only respond to practical needs but also enrich the human story.
-                </p>
-              </ScrollReveal>
+            <div className="space-y-6 leading-relaxed text-justify">
+              <ScrollTextFill as="p" fillColor="#374151" className="text-sm">
+                At The Design Department, we are a dynamic collective of architects, designers, and creative
+                thinkers dedicated to exploring the intersection between design and the human condition.
+              </ScrollTextFill>
+              <ScrollTextFill as="p" fillColor="#374151" className="text-sm">
+                We believe that design is more than form and function—it is a catalyst for shaping experiences,
+                inspiring emotion, and enhancing the way people live, work, and connect.
+              </ScrollTextFill>
+              <ScrollTextFill as="p" fillColor="#374151" className="text-sm">
+                Our multidisciplinary team thrives on curiosity, collaboration, and innovation, constantly pushing
+                boundaries to create solutions that are as thoughtful as they are beautiful. From concept to
+                completion, we approach each project with a sensitivity to context, culture, and the people it serves.
+              </ScrollTextFill>
+              <ScrollTextFill as="p" fillColor="#374151" className="text-sm">
+                Driven by a passion for meaningful design, we aim to craft environments, products, and experiences
+                that not only respond to practical needs but also enrich the human story.
+              </ScrollTextFill>
             </div>
           </div>
         </div>

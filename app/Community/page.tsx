@@ -90,11 +90,19 @@ function FadeIn({
 }
 
 /* ——— Scroll-driven text color fill (no framer-motion) ——— */
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 function TextFill({
   children,
   as: Tag = 'h3',
   fillColor = BRAND,
-  baseColor = 'rgba(0,0,0,0.15)',
+  baseColor,
   className = '',
   style,
 }: {
@@ -105,6 +113,7 @@ function TextFill({
   className?: string;
   style?: React.CSSProperties;
 }) {
+  const computedBase = baseColor ?? hexToRgba(fillColor, 0.2);
   const ref = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const done = useRef(false);
@@ -117,7 +126,7 @@ function TextFill({
       if (done.current) return;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      const start = vh * 0.85;
+      const start = vh * 1.0;
       const end = vh * 0.35;
       let p = 0;
       if (r.top <= start && r.top >= end) p = (start - r.top) / (start - end);
@@ -135,7 +144,7 @@ function TextFill({
   const pct = `${(progress * 100).toFixed(1)}%`;
   const fillStyle: React.CSSProperties = {
     ...style,
-    color: baseColor,
+    color: computedBase,
     backgroundImage: `linear-gradient(90deg, ${fillColor}, ${fillColor})`,
     backgroundSize: `${pct} 100%`,
     backgroundRepeat: 'no-repeat',
@@ -209,12 +218,12 @@ export default function CommunityPlusPage() {
               <PlusIcon size={26} />
             </h2>
             <p className="text-neutral-600 mb-6">Communal + Educational Spaces Initiative</p>
-            <p className="text-neutral-800/90 leading-8 text-justify">
-              The <strong>Design Department&rsquo;s Community Plus Campaign</strong> is dedicated to transforming under-resourced communities by
+            <TextFill as="p" fillColor="#1c1917" className="leading-8 text-justify">
+              The Design Department&rsquo;s Community Plus Campaign is dedicated to transforming under-resourced communities by
               fostering equitable access to quality spaces for learning, growth, and collaboration through architectural design. We partner
               with socially driven institutions, NGOs, and local stakeholders to catalyse lasting change, empowering communities to shape a
               future of dignity, opportunity, and shared prosperity.
-            </p>
+            </TextFill>
           </FadeIn>
           <FadeIn direction="right">
             <ContentImage src={SPLIT_IMG} alt="Community split image" />
@@ -232,7 +241,7 @@ export default function CommunityPlusPage() {
                 Our Role
               </TextFill>
             </div>
-            <p className="text-neutral-600 mb-10">Our Role as your CSR Partner</p>
+            <TextFill as="p" fillColor="#525252" className="mb-10">Our Role as your CSR Partner</TextFill>
           </FadeIn>
 
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-0">
@@ -413,10 +422,10 @@ export default function CommunityPlusPage() {
             <TextFill as="h3" fillColor={ACCENT} className="font-semibold" style={{ fontSize: 'clamp(22px,3vw,28px)' }}>
               Collaborate with us
             </TextFill>
-            <p className="mx-auto mt-3 max-w-3xl" style={{ color: LIGHT, lineHeight: 1.8 }}>
+            <TextFill as="p" fillColor="#D9E4E4" className="mx-auto mt-3 max-w-3xl" style={{ lineHeight: 1.8 }}>
               &ldquo;Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
               become the architects of lasting change.&rdquo;
-            </p>
+            </TextFill>
           </FadeIn>
         </div>
       </section>
@@ -606,16 +615,16 @@ function Strategy({ title, bullets, img }: { title: string; bullets: string[]; i
               {title}
             </TextFill>
           </div>
-          <p className="text-neutral-600 mb-6">Communal + Educational Spaces</p>
+          <TextFill as="p" fillColor="#525252" className="mb-6">Communal + Educational Spaces</TextFill>
         </FadeIn>
         <div className="grid gap-10 md:grid-cols-2 items-start">
           <FadeIn direction="left">
             <div>
-              <h4 className="font-semibold text-neutral-800 mb-2">Strategy</h4>
-              <p className="text-neutral-800/90 leading-8 mb-5">
+              <TextFill as="h4" fillColor="#1c1917" className="font-semibold mb-2">Strategy</TextFill>
+              <TextFill as="p" fillColor="#1c1917" className="leading-8 mb-5">
                 We aim to revitalise and improve spaces through human-centred, context-specific, and sustainable design strategies. This
                 includes:
-              </p>
+              </TextFill>
               <ul className="space-y-3 text-neutral-800/90">
                 {bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2">

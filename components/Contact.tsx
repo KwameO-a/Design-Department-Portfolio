@@ -20,16 +20,16 @@ export default function Contact() {
           placeholder="blur"
           blurDataURL={getBlur('/images/Logo.png')}
         />
-        <div className="space-y-4 text-sm text-gray-700 text-justify">
-          <p>
+        <div className="space-y-4 text-sm text-justify">
+          <ScrollTextFill as="p" fillColor="#374151">
             We'd love to hear from you. Whether you're starting a new project,
             seeking design collaboration, or simply want to learn more about our
             work, we welcome the conversation.
-          </p>
-          <p>
+          </ScrollTextFill>
+          <ScrollTextFill as="p" fillColor="#374151">
             At the heart of what we do is a belief in meaningful engagement, so
             let's talk about how we can create something exceptional together.
-          </p>
+          </ScrollTextFill>
         </div>
       </ScrollReveal>
 

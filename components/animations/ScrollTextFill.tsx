@@ -2,13 +2,22 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
+/** Parse a hex color like "#8b6b52" to rgba(r,g,b,alpha) */
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 interface ScrollTextFillProps {
   children: ReactNode;
   /** HTML tag to render */
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div';
-  /** Active (filled) color */
+  /** Active (filled) color — hex string like "#8b6b52" */
   fillColor?: string;
-  /** Inactive (faded) color */
+  /** Inactive (faded) color — auto-computed from fillColor at 20% opacity if omitted */
   baseColor?: string;
   /** Extra className */
   className?: string;
@@ -20,7 +29,7 @@ interface ScrollTextFillProps {
 
 /**
  * Scroll-driven text color fill animation.
- * Text starts in a faded color and progressively fills with a dark color
+ * Text starts in a faded gray of the fill color and progressively fills
  * from left to right as the user scrolls the element through the viewport.
  * Uses background-clip: text technique — no framer-motion dependency.
  */
@@ -28,7 +37,7 @@ export default function ScrollTextFill({
   children,
   as: Tag = 'h2',
   fillColor = '#333',
-  baseColor = 'rgba(0,0,0,0.15)',
+  baseColor,
   className = '',
   style,
   once = true,
@@ -36,6 +45,9 @@ export default function ScrollTextFill({
   const ref = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const doneRef = useRef(false);
+
+  // Auto-compute a faded version of the fill color if no baseColor supplied
+  const computedBase = baseColor ?? hexToRgba(fillColor, 0.2);
 
   useEffect(() => {
     const el = ref.current;
@@ -49,9 +61,10 @@ export default function ScrollTextFill({
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
 
-      // Start filling when element top is 85% from top of viewport
-      // Complete when element top is 35% from top of viewport
-      const startThreshold = vh * 0.85;
+      // Start filling when element enters viewport at the bottom edge
+      // Complete when element reaches the upper third of the viewport
+      // Wider range = slower, more gradual fill
+      const startThreshold = vh * 1.0;
       const endThreshold = vh * 0.35;
       const range = startThreshold - endThreshold;
 
@@ -92,7 +105,7 @@ export default function ScrollTextFill({
 
   const fillStyle: React.CSSProperties = {
     ...style,
-    color: baseColor,
+    color: computedBase,
     backgroundImage: `linear-gradient(90deg, ${fillColor}, ${fillColor})`,
     backgroundSize: `${pct} 100%`,
     backgroundRepeat: 'no-repeat',
