@@ -1,7 +1,7 @@
 // app/community-plus/page.tsx
 'use client';
 
-import { useEffect, useRef, useState, useCallback, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlur } from '../../lib/blur-placeholders';
@@ -115,7 +115,6 @@ function TextFill({
 }) {
   const computedBase = baseColor ?? hexToRgba(fillColor, 0.2);
   const ref = useRef<HTMLElement>(null);
-  const [progress, setProgress] = useState(0);
   const done = useRef(false);
 
   useEffect(() => {
@@ -132,7 +131,8 @@ function TextFill({
       if (r.top <= start && r.top >= end) p = (start - r.top) / (start - end);
       else if (r.top < end) p = 1;
       p = Math.max(0, Math.min(1, p));
-      setProgress(p);
+      // Direct DOM mutation — avoids React re-render per scroll frame
+      el.style.backgroundSize = `${(p * 100).toFixed(1)}% 100%`;
       if (p >= 1) done.current = true;
     };
     const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); };
@@ -141,12 +141,11 @@ function TextFill({
     return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
   }, []);
 
-  const pct = `${(progress * 100).toFixed(1)}%`;
   const fillStyle: React.CSSProperties = {
     ...style,
     color: computedBase,
     backgroundImage: `linear-gradient(90deg, ${fillColor}, ${fillColor})`,
-    backgroundSize: `${pct} 100%`,
+    backgroundSize: '0% 100%',
     backgroundRepeat: 'no-repeat',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',

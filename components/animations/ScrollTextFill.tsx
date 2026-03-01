@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useMemo, type ReactNode } from 'react';
 
 /** Parse a hex color like "#8b6b52" to rgba(r,g,b,alpha) */
 function hexToRgba(hex: string, alpha: number): string {
@@ -32,6 +32,7 @@ interface ScrollTextFillProps {
  * Text starts in a faded gray of the fill color and progressively fills
  * from left to right as the user scrolls the element through the viewport.
  * Uses background-clip: text technique — no framer-motion dependency.
+ * Directly mutates DOM style to avoid React re-renders on every scroll frame.
  */
 export default function ScrollTextFill({
   children,
@@ -43,11 +44,13 @@ export default function ScrollTextFill({
   once = true,
 }: ScrollTextFillProps) {
   const ref = useRef<HTMLElement>(null);
-  const [progress, setProgress] = useState(0);
   const doneRef = useRef(false);
 
   // Auto-compute a faded version of the fill color if no baseColor supplied
-  const computedBase = baseColor ?? hexToRgba(fillColor, 0.2);
+  const computedBase = useMemo(
+    () => baseColor ?? hexToRgba(fillColor, 0.2),
+    [baseColor, fillColor],
+  );
 
   useEffect(() => {
     const el = ref.current;
@@ -76,7 +79,9 @@ export default function ScrollTextFill({
       }
 
       p = Math.max(0, Math.min(1, p));
-      setProgress(p);
+
+      // Direct DOM mutation — avoids React re-render per scroll frame
+      el.style.backgroundSize = `${(p * 100).toFixed(1)}% 100%`;
 
       if (p >= 1 && once) {
         doneRef.current = true;
@@ -84,7 +89,7 @@ export default function ScrollTextFill({
     };
 
     const onScroll = () => {
-      if (rafId) cancelAnimationFrame(rafId);
+      cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(update);
     };
 
@@ -97,17 +102,15 @@ export default function ScrollTextFill({
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
+      cancelAnimationFrame(rafId);
     };
   }, [once]);
-
-  const pct = `${(progress * 100).toFixed(1)}%`;
 
   const fillStyle: React.CSSProperties = {
     ...style,
     color: computedBase,
     backgroundImage: `linear-gradient(90deg, ${fillColor}, ${fillColor})`,
-    backgroundSize: `${pct} 100%`,
+    backgroundSize: '0% 100%',
     backgroundRepeat: 'no-repeat',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
