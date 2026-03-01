@@ -1,39 +1,70 @@
 // components/ContentGrid.tsx
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
 
 interface ContentItem {
   label: string;
   href?: string;
 }
 
-type Size = 'sm' | 'md' | 'lg';
-
 interface ContentGridProps {
   items: ContentItem[];
-  /** Controls pill padding and font size */
-  size?: Size;
-  /** Extra classes applied to each pill (optional) */
-  pillClassName?: string;
 }
 
-const sizeClasses: Record<Size, string> = {
-  sm: 'px-2 py-1 text-xs md:px-4 md:py-2.5 md:text-sm',
-  md: 'px-3 py-1.5 text-sm md:px-8 md:py-1.5 md:text-base',
-  lg: 'px-4 py-2 text-base md:px-10 md:py-5 md:text-lg',
-};
+const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
+  const [morphed, setMorphed] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
-const ContentGrid: React.FC<ContentGridProps> = ({ items, size = 'md', pillClassName = '' }) => {
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    // When the sentinel scrolls out of view, the nav is stuck → morph
+    const obs = new IntersectionObserver(
+      ([entry]) => setMorphed(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    obs.observe(sentinel);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section
-      className="flex items-center justify-center py-3 md:py-4"
-      style={{ backgroundColor: '#0D2B2B' }}
-    >
-      <div className="mx-auto w-full max-w-[1040px] px-4">
-        <nav aria-label="Section navigation">
+    <>
+      {/* Invisible sentinel — when it leaves viewport, nav is "stuck" */}
+      <div ref={sentinelRef} className="h-0 w-full" aria-hidden />
+
+      <nav
+        aria-label="Section navigation"
+        className="sticky top-0 z-50 transition-all duration-[400ms] ease-in-out"
+        style={{
+          // Outer wrapper: always full-width so the morph padding works
+          padding: morphed ? '10px 16px' : '0 0',
+        }}
+      >
+        <div
+          className="mx-auto transition-all duration-[400ms] ease-in-out"
+          style={{
+            maxWidth: morphed ? '720px' : '100%',
+            borderRadius: morphed ? '9999px' : '0px',
+            backgroundColor: morphed
+              ? 'rgba(13, 43, 43, 0.75)'
+              : '#0D2B2B',
+            backdropFilter: morphed ? 'blur(16px)' : 'none',
+            WebkitBackdropFilter: morphed ? 'blur(16px)' : 'none',
+            border: morphed
+              ? '1px solid rgba(139, 107, 82, 0.3)'
+              : '1px solid transparent',
+            boxShadow: morphed
+              ? '0 4px 24px rgba(0, 0, 0, 0.25)'
+              : 'none',
+            padding: morphed ? '8px 12px' : '12px 16px',
+          }}
+        >
           <div
             className={[
               'flex w-full items-center',
-              'gap-3 md:gap-6',
+              'gap-3 md:gap-5',
               'justify-start md:justify-center',
               'overflow-x-auto md:overflow-visible',
               'whitespace-nowrap',
@@ -47,28 +78,29 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items, size = 'md', pillClass
                 href={href}
                 className={[
                   'shrink-0 inline-flex items-center justify-center',
-                  'rounded-xl border',
-                  sizeClasses[size], // ← padding & font-size come from here
-                  'font-bold text-center',
-                  'transition-transform duration-200',
+                  'rounded-full border',
+                  'text-sm font-semibold text-center',
+                  'transition-all duration-200',
                   'md:hover:-translate-y-0.5 md:hover:shadow-[0_2px_4px_rgba(0,0,0,0.06)]',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B6B52] focus-visible:ring-offset-2',
                   'focus-visible:ring-offset-[#0D2B2B]',
-                  pillClassName,
                 ].join(' ')}
                 style={{
                   borderColor: '#8B6B52',
                   color: '#8B6B52',
                   backgroundColor: 'transparent',
+                  padding: morphed ? '6px 16px' : '8px 24px',
+                  fontSize: morphed ? '13px' : '14px',
+                  transition: 'all 400ms ease-in-out',
                 }}
               >
                 {label}
               </a>
             ))}
           </div>
-        </nav>
-      </div>
-    </section>
+        </div>
+      </nav>
+    </>
   );
 };
 
