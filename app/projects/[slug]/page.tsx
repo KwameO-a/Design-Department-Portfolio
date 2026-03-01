@@ -118,19 +118,14 @@ const DB: Record<string, Project> = {
       'Rising with quiet strength against the Kenyan sky, this house stands as a dialogue between art and permanence. Inspired by Michelangelo\u2019s mastery of form, it is less a dwelling than a sculpture in which one may live\u2014 each line, each shadow, chiseling space with intention.',
     ],
     section2: {
-      leadImage: '/images/works/iaa2.jpg',
+      leadImage: '/images/works/kenya2.JPG',
       body: [
         'Its planes stretch outward like the reach of a fresco, framing earth and horizon, while its columns lift the weight of stone with grace, a nod to the timeless language of the Renaissance,reinterpreted here in modern rhythm. Natural, hardwearing materials root it deeply in its land. Stone, timber, and textured concrete endure the seasons, bearing the touch of time as beautifully as marble once bore the sculptor\u2019s hand. The house does not hide its strength\u2014 it celebrates it, its surfaces weathering into poetry with every sun and rain.',
       ],
       tiles: [
-        '/images/works/iaa3.jpg',
-        '/images/works/iaa4.jpg',
-        '/images/works/iaa5.jpg',
-        '/images/works/iaa6.jpg',
-        '/images/works/iaa7.jpg',
-        '/images/works/iaa8.jpeg',
-        '/images/works/iaa9.jpeg',
-        '/images/works/iaa10.jpeg',
+        '/images/works/kenya3.PNG',
+        '/images/works/kenya4.jpg',
+        '/images/works/kenya5.jpg',
       ],
     },
   },

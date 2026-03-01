@@ -78,6 +78,12 @@ export default function ScrollTextFill({
         p = 1;
       }
 
+      // Force-complete for elements near the page bottom that can't scroll high enough
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+      if (atBottom && rect.top < vh) {
+        p = 1;
+      }
+
       p = Math.max(0, Math.min(1, p));
 
       // Direct DOM mutation — avoids React re-render per scroll frame

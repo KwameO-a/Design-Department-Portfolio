@@ -130,6 +130,9 @@ function TextFill({
       let p = 0;
       if (r.top <= start && r.top >= end) p = (start - r.top) / (start - end);
       else if (r.top < end) p = 1;
+      // Force-complete for elements near the page bottom that can't scroll high enough
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+      if (atBottom && r.top < vh) p = 1;
       p = Math.max(0, Math.min(1, p));
       // Direct DOM mutation — avoids React re-render per scroll frame
       el.style.backgroundSize = `${(p * 100).toFixed(1)}% 100%`;
