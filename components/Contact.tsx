@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ScrollReveal, TextReveal, BlurImage } from './animations';
+import { ScrollReveal, BlurImage, ScrollTextFill } from './animations';
 import { getBlur } from '../lib/blur-placeholders';
 
 export default function Contact() {
@@ -48,23 +48,20 @@ export default function Contact() {
       {/* Right Column */}
       <ScrollReveal direction="right" className="lg:w-1/3 p-8 flex flex-col justify-center items-center">
         <div className="text-center">
-          <TextReveal
+          <ScrollTextFill
             as="h2"
-            variant="slide-up"
+            fillColor="#8b6b52"
             className="font-bold tracking-widest mb-2 leading-none text-3xl sm:text-4xl md:text-5xl"
-            style={{ color: '#8b6b52' }}
           >
             OUR
-          </TextReveal>
-          <TextReveal
+          </ScrollTextFill>
+          <ScrollTextFill
             as="h2"
-            variant="slide-up"
-            delay={0.15}
+            fillColor="#8b6b52"
             className="font-bold tracking-widest leading-tight text-5xl sm:text-6xl md:text-7xl"
-            style={{ color: '#8b6b52' }}
           >
             CONTACT
-          </TextReveal>
+          </ScrollTextFill>
         </div>
 
         {/* Contact details with hover microinteractions */}

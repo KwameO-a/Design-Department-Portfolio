@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ScrollReveal, TextReveal, BlurImage, StaggerContainer, staggerItemVariants } from './animations';
+import { ScrollReveal, BlurImage, StaggerContainer, staggerItemVariants, ScrollTextFill } from './animations';
 import { getBlur } from '../lib/blur-placeholders';
 
 export default function Team() {
@@ -11,14 +11,14 @@ export default function Team() {
     <section id="team" className="bg-white py-16 md:py-20">
       <div className="container mx-auto px-4 lg:px-16">
         {/* MEET OUR TEAM */}
-        <TextReveal
+        <ScrollTextFill
           as="h2"
-          variant="fade-up"
+          fillColor="#8b6b52"
           className="text-center font-bold tracking-wide mb-12 md:mb-16"
-          style={{ color: '#8b6b52', fontSize: 'clamp(28px, 4.2vw, 48px)' }}
+          style={{ fontSize: 'clamp(28px, 4.2vw, 48px)' }}
         >
           MEET OUR TEAM
-        </TextReveal>
+        </ScrollTextFill>
 
         {/* Top profiles */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20 md:mb-24 justify-items-center">
@@ -80,14 +80,14 @@ export default function Team() {
         </div>
 
         {/* DEPARTMENT HEADS */}
-        <TextReveal
+        <ScrollTextFill
           as="h3"
-          variant="blur"
+          fillColor="#8b6b52"
           className="text-center font-semibold mb-6"
-          style={{ color: '#8b6b52', fontSize: 'clamp(20px, 2.4vw, 28px)' }}
+          style={{ fontSize: 'clamp(20px, 2.4vw, 28px)' }}
         >
           Department Heads
-        </TextReveal>
+        </ScrollTextFill>
 
         {/* shifted right on md+ */}
         <StaggerContainer

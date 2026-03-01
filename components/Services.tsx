@@ -1,6 +1,6 @@
 'use client';
 
-import { ScrollReveal, TextReveal, BlurImage } from './animations';
+import { ScrollReveal, BlurImage, ScrollTextFill } from './animations';
 import { getBlur } from '../lib/blur-placeholders';
 
 export default function Services() {
@@ -26,14 +26,13 @@ export default function Services() {
         {/* Right Section - Content */}
         <div className="flex items-center justify-center lg:w-1/2">
           <div className="w-full max-w-lg">
-            <TextReveal
+            <ScrollTextFill
               as="h2"
-              variant="fade-up"
+              fillColor="#8b6b52"
               className="text-4xl font-bold mb-8 tracking-wide"
-              style={{ color: '#8b6b52' }}
             >
               ABOUT US
-            </TextReveal>
+            </ScrollTextFill>
 
             <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
               <ScrollReveal delay={0.1}>

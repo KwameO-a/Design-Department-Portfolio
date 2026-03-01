@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
-import { ScrollReveal, TextReveal } from './animations';
+import { ScrollReveal, ScrollTextFill } from './animations';
 import { getBlur } from '../lib/blur-placeholders';
 
 type Project = {
@@ -53,21 +53,22 @@ export default function Buildings() {
           {/* Left: heading + paragraph — slides in from left */}
           <ScrollReveal direction="left" className="md:col-span-5">
             <div className="space-y-1">
-              <TextReveal
+              <ScrollTextFill
                 as="div"
-                variant="fade-up"
-                className="text-2xl font-extrabold tracking-[0.35em] text-[#DDBFA9]"
+                fillColor="#DDBFA9"
+                baseColor="rgba(221,191,169,0.2)"
+                className="text-2xl font-extrabold tracking-[0.35em]"
               >
                 OUR
-              </TextReveal>
-              <TextReveal
+              </ScrollTextFill>
+              <ScrollTextFill
                 as="div"
-                variant="fade-up"
-                delay={0.1}
-                className="text-4xl md:text-5xl font-extrabold tracking-[0.25em] text-[#DDBFA9]"
+                fillColor="#DDBFA9"
+                baseColor="rgba(221,191,169,0.2)"
+                className="text-4xl md:text-5xl font-extrabold tracking-[0.25em]"
               >
                 PROJECTS
-              </TextReveal>
+              </ScrollTextFill>
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}

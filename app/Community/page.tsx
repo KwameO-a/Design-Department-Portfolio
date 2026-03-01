@@ -89,6 +89,66 @@ function FadeIn({
   );
 }
 
+/* ——— Scroll-driven text color fill (no framer-motion) ——— */
+function TextFill({
+  children,
+  as: Tag = 'h3',
+  fillColor = BRAND,
+  baseColor = 'rgba(0,0,0,0.15)',
+  className = '',
+  style,
+}: {
+  children: ReactNode;
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'div';
+  fillColor?: string;
+  baseColor?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+  const done = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf: number;
+    const tick = () => {
+      if (done.current) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.85;
+      const end = vh * 0.35;
+      let p = 0;
+      if (r.top <= start && r.top >= end) p = (start - r.top) / (start - end);
+      else if (r.top < end) p = 1;
+      p = Math.max(0, Math.min(1, p));
+      setProgress(p);
+      if (p >= 1) done.current = true;
+    };
+    const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); };
+    tick();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
+  const pct = `${(progress * 100).toFixed(1)}%`;
+  const fillStyle: React.CSSProperties = {
+    ...style,
+    color: baseColor,
+    backgroundImage: `linear-gradient(90deg, ${fillColor}, ${fillColor})`,
+    backgroundSize: `${pct} 100%`,
+    backgroundRepeat: 'no-repeat',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    transition: 'background-size 0.08s linear',
+  };
+
+  // @ts-ignore — dynamic tag
+  return <Tag ref={ref} className={className} style={fillStyle}>{children}</Tag>;
+}
+
 export default function CommunityPlusPage() {
   const [showTop, setShowTop] = useState(false);
 
@@ -168,9 +228,9 @@ export default function CommunityPlusPage() {
           <FadeIn direction="up">
             <div className="mb-2 flex items-center gap-3">
               <PlusIcon size={18} />
-              <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+              <TextFill as="h3" className="text-3xl md:text-4xl font-semibold">
                 Our Role
-              </h3>
+              </TextFill>
             </div>
             <p className="text-neutral-600 mb-10">Our Role as your CSR Partner</p>
           </FadeIn>
@@ -249,9 +309,9 @@ export default function CommunityPlusPage() {
           <FadeIn direction="up">
             <div className="mb-4 flex items-center gap-3">
               <PlusIcon size={18} />
-              <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+              <TextFill as="h3" className="text-3xl md:text-4xl font-semibold">
                 Our Team
-              </h3>
+              </TextFill>
             </div>
             <p className="text-neutral-600 mb-10">Meet the core members of our team</p>
           </FadeIn>
@@ -350,9 +410,9 @@ export default function CommunityPlusPage() {
       <section className="px-6 py-14" style={{ backgroundColor: DARK }}>
         <div className="mx-auto w-full max-w-[1100px] text-center">
           <FadeIn direction="up" delay={0.1}>
-            <h3 className="font-semibold" style={{ color: ACCENT, fontSize: 'clamp(22px,3vw,28px)' }}>
+            <TextFill as="h3" fillColor={ACCENT} className="font-semibold" style={{ fontSize: 'clamp(22px,3vw,28px)' }}>
               Collaborate with us
-            </h3>
+            </TextFill>
             <p className="mx-auto mt-3 max-w-3xl" style={{ color: LIGHT, lineHeight: 1.8 }}>
               &ldquo;Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
               become the architects of lasting change.&rdquo;
@@ -542,9 +602,9 @@ function Strategy({ title, bullets, img }: { title: string; bullets: string[]; i
         <FadeIn direction="up">
           <div className="mb-6 flex items-center gap-3">
             <PlusIcon size={18} />
-            <h3 className="text-3xl md:text-4xl font-semibold" style={{ color: BRAND }}>
+            <TextFill as="h3" className="text-3xl md:text-4xl font-semibold">
               {title}
-            </h3>
+            </TextFill>
           </div>
           <p className="text-neutral-600 mb-6">Communal + Educational Spaces</p>
         </FadeIn>

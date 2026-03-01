@@ -4,3 +4,4 @@ export { default as ParallaxImage } from './ParallaxImage';
 export { default as StaggerContainer, staggerItemVariants } from './StaggerContainer';
 export { default as PageTransition } from './PageTransition';
 export { default as BlurImage } from './BlurImage';
+export { default as ScrollTextFill } from './ScrollTextFill';

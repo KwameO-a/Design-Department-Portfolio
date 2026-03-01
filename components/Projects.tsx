@@ -1,16 +1,19 @@
 'use client';
 
+import { ScrollTextFill } from './animations';
+
 export default function Services() {
   return (
     <section id="services" className="py-20 px-4 bg-white">
       {/* Header */}
       <div className="text-center mb-16">
-        <h2
+        <ScrollTextFill
+          as="h2"
+          fillColor="#8b6b52"
           className="text-4xl font-bold mb-8 tracking-wide"
-          style={{ color: '#8b6b52' }}
         >
           OUR SERVICES
-        </h2>
+        </ScrollTextFill>
       </div>
 
       {/* Slight responsive nudge so the vertical rules + rag-left text look optically centered */}
