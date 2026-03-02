@@ -1,6 +1,5 @@
 import Hero from '../components/Hero';
 import ContentGrid from '../components/ContentGrid';
-import About from '../components/About';
 import Services from '../components/Services';
 import Projects from '../components/Projects';
 import Team from '../components/Team';
@@ -20,8 +19,7 @@ export default function Home() {
     <>
       <ContentGrid items={contentItems} />
       <Hero />
-      <section id="about"><About /></section>
-      <section id="services"><Services /></section>
+      <section id="about"><Services /></section>
       {/* If you now have a dedicated /projects page, you can remove this next line */}
       <section id="projects"><Projects /></section>
       <section id="team"><Team /></section>
