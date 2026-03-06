@@ -60,7 +60,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
         <Link
           href="/"
           aria-label="Home"
-          className="hidden md:inline-flex shrink-0 items-center mr-auto"
+          className="inline-flex shrink-0 items-center mr-auto"
         >
           <Image
             src="/images/Logo.png"
@@ -69,12 +69,12 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
             height={140}
             priority
             className="w-auto transition-all duration-[400ms]"
-            style={{ height: morphed ? '34px' : '56px' }}
+            style={{ height: morphed ? 'clamp(22px, 4vw, 34px)' : 'clamp(28px, 5vw, 56px)' }}
           />
         </Link>
 
         {/* Nav links — fits all items on mobile */}
-        <div className="flex items-center justify-center w-full md:w-auto gap-4 md:gap-8">
+        <div className="flex items-center justify-end w-full md:w-auto gap-3 md:gap-8">
           {items.map(({ label, href = '#' }, idx) => (
             <a
               key={idx}
@@ -82,7 +82,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
               className="shrink-0 transition-all duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B6B52]"
               style={{
                 color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: morphed ? 'clamp(12px, 1.8vw, 15px)' : 'clamp(13px, 2vw, 17px)',
+                fontSize: morphed ? 'clamp(11px, 1.6vw, 15px)' : 'clamp(12px, 1.8vw, 17px)',
                 fontWeight: 400,
                 opacity: 1,
                 letterSpacing: '0.01em',
