@@ -16,6 +16,7 @@ interface ContentGridProps {
 
 const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
   const [morphed, setMorphed] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const ticking = useRef(false);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
           boxShadow: morphed ? '0 8px 32px rgba(0, 0, 0, 0.3)' : 'none',
         }}
       >
-        {/* Logo (left — desktop only) */}
+        {/* Logo (left) */}
         <Link
           href="/"
           aria-label="Home"
@@ -73,8 +74,8 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
           />
         </Link>
 
-        {/* Nav links — fits all items on mobile */}
-        <div className="flex items-center justify-end w-full md:w-auto gap-3 md:gap-8">
+        {/* Desktop nav links */}
+        <div className="hidden md:flex items-center gap-8">
           {items.map(({ label, href = '#' }, idx) => (
             <a
               key={idx}
@@ -82,12 +83,74 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
               className="shrink-0 transition-all duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8B6B52]"
               style={{
                 color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: morphed ? 'clamp(11px, 1.6vw, 15px)' : 'clamp(12px, 1.8vw, 17px)',
+                fontSize: morphed ? '15px' : '17px',
                 fontWeight: 400,
-                opacity: 1,
                 letterSpacing: '0.01em',
                 transition: 'all 400ms ease-in-out',
               }}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile hamburger button */}
+        <button
+          type="button"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          className="md:hidden p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+        >
+          <span
+            className="block h-0.5 w-5 transition-all duration-300"
+            style={{
+              background: 'rgba(255,255,255,0.9)',
+              transform: menuOpen ? 'rotate(45deg) translateY(6px)' : 'none',
+            }}
+          />
+          <span
+            className="block h-0.5 w-5 my-1 transition-all duration-300"
+            style={{
+              background: 'rgba(255,255,255,0.9)',
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            className="block h-0.5 w-5 transition-all duration-300"
+            style={{
+              background: 'rgba(255,255,255,0.9)',
+              transform: menuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none',
+            }}
+          />
+        </button>
+      </div>
+
+      {/* Mobile dropdown menu */}
+      <div
+        className={[
+          'md:hidden overflow-hidden transition-[max-height,opacity] duration-300',
+          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0',
+        ].join(' ')}
+        style={{
+          backgroundColor: 'rgba(13, 43, 43, 0.95)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderRadius: morphed ? '0 0 24px 24px' : '0',
+          marginTop: '4px',
+          maxWidth: morphed ? '960px' : '100%',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+      >
+        <div className="px-6 py-4 flex flex-col gap-3">
+          {items.map(({ label, href = '#' }, idx) => (
+            <a
+              key={idx}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className="py-2 text-white/90 hover:text-white transition-colors duration-200"
+              style={{ fontSize: '16px', fontWeight: 400, letterSpacing: '0.01em' }}
             >
               {label}
             </a>
