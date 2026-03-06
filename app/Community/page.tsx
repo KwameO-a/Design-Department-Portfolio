@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlur } from '../../lib/blur-placeholders';
+import ContentGrid from '../../components/ContentGrid';
 
 const DARK = '#0D2B2B';
 const ACCENT = '#8B6B52';
@@ -172,8 +173,18 @@ export default function CommunityPlusPage() {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  const navItems = [
+    { label: 'About',       href: '/#about' },
+    { label: 'Services',    href: '/#projects' },
+    { label: 'Studio',      href: '/projects' },
+    { label: 'Team',        href: '/#team' },
+    { label: 'Community +', href: '/Community' },
+  ];
+
   return (
     <main className="min-h-screen" style={{ backgroundColor: DARK }}>
+      <ContentGrid items={navItems} />
+
       {/* HERO */}
       <section className="relative min-h-[58vh]">
         <Image
@@ -187,7 +198,6 @@ export default function CommunityPlusPage() {
           blurDataURL={getBlur(HERO_IMG)}
         />
         <div className="absolute inset-0 bg-black/25" />
-        <HeaderLogo />
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="mx-auto w-full max-w-[1100px] text-center">

@@ -24,7 +24,7 @@ export default function Team() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20 md:mb-24 justify-items-center">
           <ScrollReveal direction="up" delay={0}>
             <div className="w-full max-w-md flex flex-col items-center text-center">
-              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-sm relative overflow-hidden">
+              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden">
                 <Image
                   src="/images/victor.png"
                   alt="Victor Owusu-Sekyere"
@@ -52,7 +52,7 @@ export default function Team() {
 
           <ScrollReveal direction="up" delay={0.15}>
             <div className="w-full max-w-md flex flex-col items-center text-center">
-              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-sm relative overflow-hidden">
+              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden">
                 <Image
                   src="/images/kofi.jpeg"
                   alt="Kofi Dako"
