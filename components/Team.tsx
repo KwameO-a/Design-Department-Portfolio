@@ -21,9 +21,9 @@ export default function Team() {
         </ScrollTextFill>
 
         {/* Top profiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-24 justify-items-center">
-          <ScrollReveal direction="up" delay={0}>
-            <div className="w-full max-w-md flex flex-col items-center text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto mb-12 md:mb-24">
+          <ScrollReveal direction="up" delay={0} className="w-full">
+            <div className="w-full flex flex-col items-center text-center">
               <div className="w-full bg-white h-[400px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden shadow-sm">
                 <Image
                   src="/images/victor.png"
@@ -50,8 +50,8 @@ export default function Team() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={0.15}>
-            <div className="w-full max-w-md flex flex-col items-center text-center">
+          <ScrollReveal direction="up" delay={0.15} className="w-full">
+            <div className="w-full flex flex-col items-center text-center">
               <div className="w-full bg-white h-[400px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden shadow-sm">
                 <Image
                   src="/images/kofi.jpeg"
@@ -98,7 +98,7 @@ export default function Team() {
             {[
               { src: '/images/architect.png', alt: 'Design Studio', name: 'Vincent Hammond', dept: 'Design Studio', title: 'Architect' },
               { src: '/images/chip.png', alt: 'Information Technology', name: 'Eugene Osei-Adjapong', dept: 'Information Technology', title: 'Chief Technology Officer' },
-              { src: '/images/cost.jpg', alt: 'Cost Management', name: 'Philip Opare', dept: 'Cost Management & Procurement Dept.', title: 'Quantity Surveyor | Cost Consultant | PMP' },
+              { src: '/images/cost.png', alt: 'Cost Management', name: 'Philip Opare', dept: 'Cost Management & Procurement Dept.', title: 'Quantity Surveyor | Cost Consultant | PMP' },
               { src: '/images/book.png', alt: 'Civil & Structural', name: 'Daniel Sam', dept: 'Civil & Structural Engineering Dept.', title: 'Structural Engineer' },
               { src: '/images/electrical.png', alt: 'Electrical Engineering', name: 'Alexander Nartey', dept: 'Electrical Engineering & Automation Dept.', title: 'Electrical Engineer' },
               { src: '/images/gears.png', alt: 'Mechanical Engineering', name: 'Richmond Akoliga', dept: 'Mechanical Engineering Dept.', title: 'Mechanical Engineer' },
