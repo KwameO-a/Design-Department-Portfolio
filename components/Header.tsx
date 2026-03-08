@@ -65,7 +65,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
       aria-label="Main"
     >
       {/* Top bar */}
-      <div className="mx-auto flex h-24 w-full max-w-7xl items-center px-6">
+      <div className="mx-auto flex h-16 md:h-24 w-full max-w-7xl items-center px-4 md:px-6">
         {/* Hamburger (mobile) */}
         <button
           type="button"
@@ -110,7 +110,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
             width={280}
             height={140}
             priority
-            className="h-20 w-auto md:h-20 lg:h-24 transition-all duration-300"
+            className="h-10 w-auto md:h-16 lg:h-20 transition-all duration-300"
           />
         </Link>
       </div>

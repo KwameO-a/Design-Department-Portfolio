@@ -21,10 +21,10 @@ export default function Team() {
         </ScrollTextFill>
 
         {/* Top profiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20 md:mb-24 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-24 justify-items-center">
           <ScrollReveal direction="up" delay={0}>
             <div className="w-full max-w-md flex flex-col items-center text-center">
-              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden">
+              <div className="w-full bg-white h-[320px] sm:h-[420px] md:h-[560px] rounded-2xl relative overflow-hidden">
                 <Image
                   src="/images/victor.png"
                   alt="Victor Owusu-Sekyere"
@@ -52,7 +52,7 @@ export default function Team() {
 
           <ScrollReveal direction="up" delay={0.15}>
             <div className="w-full max-w-md flex flex-col items-center text-center">
-              <div className="w-full bg-white h-[420px] sm:h-[480px] md:h-[560px] rounded-2xl relative overflow-hidden">
+              <div className="w-full bg-white h-[320px] sm:h-[420px] md:h-[560px] rounded-2xl relative overflow-hidden">
                 <Image
                   src="/images/kofi.jpeg"
                   alt="Kofi Dako"
@@ -111,10 +111,10 @@ export default function Team() {
                 transition={{ duration: 0.2 }}
               >
                 <Image src={head.src} alt={head.alt} width={40} height={40} className="shrink-0 transition-transform group-hover:scale-110" loading="lazy" />
-                <div className="text-left">
+                <div className="text-left min-w-0">
                   <p className="font-bold text-gray-900 leading-tight">{head.name}</p>
-                  <p className="text-[#8b6b52] text-sm leading-tight">{head.dept}</p>
-                  <p className="text-sm text-gray-600 leading-tight">{head.title}</p>
+                  <p className="text-[#8b6b52] text-xs sm:text-sm leading-tight break-words">{head.dept}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-tight break-words">{head.title}</p>
                 </div>
               </motion.div>
             ))}

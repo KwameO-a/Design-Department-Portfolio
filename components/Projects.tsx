@@ -10,7 +10,7 @@ export default function Services() {
         <ScrollTextFill
           as="h2"
           fillColor="#8b6b52"
-          className="text-4xl font-bold mb-8 tracking-wide"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 tracking-wide"
         >
           OUR SERVICES
         </ScrollTextFill>

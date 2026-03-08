@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section id="contact" className="bg-white min-h-screen flex flex-col lg:flex-row">
       {/* Left Column – Logo and Intro Text */}
-      <ScrollReveal direction="left" className="lg:w-1/3 p-8 flex flex-col justify-center">
+      <ScrollReveal direction="left" className="lg:w-1/3 p-4 sm:p-8 flex flex-col justify-center">
         <Image
           src="/images/Logo.png"
           alt="Design Department Logo"
@@ -34,7 +34,7 @@ export default function Contact() {
       </ScrollReveal>
 
       {/* Center Image with blur-up */}
-      <ScrollReveal direction="up" className="lg:w-1/3 relative min-h-[500px]">
+      <ScrollReveal direction="up" className="lg:w-1/3 relative min-h-[300px] lg:min-h-[500px]">
         <BlurImage
           src="/images/contact-image.JPG"
           alt="Contact showcase"
@@ -46,19 +46,19 @@ export default function Contact() {
       </ScrollReveal>
 
       {/* Right Column */}
-      <ScrollReveal direction="right" className="lg:w-1/3 p-8 flex flex-col justify-center items-center">
+      <ScrollReveal direction="right" className="lg:w-1/3 p-4 sm:p-8 flex flex-col justify-center items-center">
         <div className="text-center">
           <ScrollTextFill
             as="h2"
             fillColor="#8b6b52"
-            className="font-bold tracking-widest mb-2 leading-none text-3xl sm:text-4xl md:text-5xl"
+            className="font-bold tracking-wider sm:tracking-widest mb-2 leading-none text-2xl sm:text-3xl md:text-5xl"
           >
             OUR
           </ScrollTextFill>
           <ScrollTextFill
             as="h2"
             fillColor="#8b6b52"
-            className="font-bold tracking-widest leading-tight text-5xl sm:text-6xl md:text-7xl"
+            className="font-bold tracking-wide sm:tracking-widest leading-tight text-2xl sm:text-5xl md:text-7xl"
           >
             CONTACT
           </ScrollTextFill>
@@ -79,7 +79,7 @@ export default function Contact() {
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
               <Image src={item.icon} alt="" width={20} height={20} className="opacity-80 group-hover:opacity-100 transition-opacity" />
-              <span className="underline-offset-4 group-hover:underline">{item.text}</span>
+              <span className="underline-offset-4 group-hover:underline break-all sm:break-normal">{item.text}</span>
             </motion.a>
           ))}
 
