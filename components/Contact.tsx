@@ -7,7 +7,7 @@ import { getBlur } from '../lib/blur-placeholders';
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-white min-h-screen flex flex-col lg:flex-row">
+    <section id="contact" className="min-h-screen flex flex-col lg:flex-row" style={{ background: 'linear-gradient(180deg, #faf8f6 0%, #f7f4f1 50%, #f2eeea 100%)' }}>
       {/* Left Column – Logo and Intro Text */}
       <ScrollReveal direction="left" className="lg:w-1/3 p-4 sm:p-8 flex flex-col justify-center">
         <Image

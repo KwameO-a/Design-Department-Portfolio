@@ -59,9 +59,9 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
       <div
         className="mx-auto flex items-center"
         style={{
-          maxWidth: morphed ? '960px' : '100%',
-          height: morphed ? '48px' : '64px',
-          padding: morphed ? '0 16px' : '0 16px',
+          maxWidth: morphed ? '1060px' : '100%',
+          height: morphed ? '56px' : '64px',
+          padding: morphed ? '0 24px' : '0 16px',
           borderRadius: morphed ? '9999px' : '0px',
           backgroundColor: morphed ? 'rgba(13, 43, 43, 0.85)' : 'transparent',
           backdropFilter: morphed ? 'blur(20px)' : 'none',
@@ -85,7 +85,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
             priority
             className="w-auto"
             style={{
-              height: morphed ? '34px' : '56px',
+              height: morphed ? '38px' : '56px',
               transition: 'height 400ms ease-in-out',
               willChange: 'height',
             }}

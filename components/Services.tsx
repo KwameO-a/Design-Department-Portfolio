@@ -5,7 +5,7 @@ import { getBlur } from '../lib/blur-placeholders';
 
 export default function Services() {
   return (
-    <section id="services" className="bg-white relative py-16 px-4 sm:px-8 lg:px-16">
+    <section id="services" className="relative py-16 px-4 sm:px-8 lg:px-16" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f9f5f1 50%, #f3ede7 100%)' }}>
       <div className="absolute top-8 right-8 z-10" />
 
       <div className="flex flex-col lg:flex-row items-stretch min-h-[500px] gap-8">
@@ -29,7 +29,8 @@ export default function Services() {
             <ScrollTextFill
               as="h2"
               fillColor="#8b6b52"
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 tracking-wide"
+              className="font-bold mb-8 tracking-wide"
+              style={{ fontSize: 'clamp(28px, 4.2vw, 48px)' }}
             >
               ABOUT US
             </ScrollTextFill>
