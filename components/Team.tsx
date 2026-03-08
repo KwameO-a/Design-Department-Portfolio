@@ -8,7 +8,7 @@ import { getBlur } from '../lib/blur-placeholders';
 
 export default function Team() {
   return (
-    <section id="team" className="py-16 md:py-20" style={{ background: 'linear-gradient(180deg, #edf1f3 0%, #f5f3f0 50%, #faf8f6 100%)' }}>
+    <section id="team" className="py-16 md:py-20" style={{ background: 'linear-gradient(180deg, #dbe7e8 0%, #e8ddd4 50%, #f5ebe0 100%)' }}>
       <div className="container mx-auto px-4 lg:px-16">
         {/* MEET OUR TEAM */}
         <ScrollTextFill

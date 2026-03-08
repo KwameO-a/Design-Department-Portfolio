@@ -4,7 +4,7 @@ import { ScrollTextFill } from './animations';
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #f3ede7 0%, #f0ece8 30%, #edf1f3 100%)' }}>
+    <section id="services" className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #eddcd2 0%, #e3d5ca 30%, #dbe7e8 100%)' }}>
       {/* Header */}
       <div className="text-center mb-16">
         <ScrollTextFill

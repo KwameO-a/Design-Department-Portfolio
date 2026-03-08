@@ -5,7 +5,7 @@ import { getBlur } from '../lib/blur-placeholders';
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-16 px-4 sm:px-8 lg:px-16" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f9f5f1 50%, #f3ede7 100%)' }}>
+    <section id="services" className="relative py-16 px-4 sm:px-8 lg:px-16" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f5ebe0 40%, #eddcd2 100%)' }}>
       <div className="absolute top-8 right-8 z-10" />
 
       <div className="flex flex-col lg:flex-row items-stretch min-h-[500px] gap-8">
