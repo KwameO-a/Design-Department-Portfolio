@@ -110,7 +110,7 @@ export default function Header({ variant = 'light' }: HeaderProps) {
             width={280}
             height={140}
             priority
-            className="h-16 w-auto md:h-20 lg:h-24 transition-all duration-300"
+            className="h-20 w-auto md:h-20 lg:h-24 transition-all duration-300"
           />
         </Link>
       </div>

@@ -70,7 +70,7 @@ const ContentGrid: React.FC<ContentGridProps> = ({ items }) => {
             height={140}
             priority
             className="w-auto transition-all duration-[400ms]"
-            style={{ height: morphed ? 'clamp(28px, 5vw, 44px)' : 'clamp(36px, 7vw, 70px)' }}
+            style={{ height: morphed ? 'clamp(34px, 5vw, 44px)' : 'clamp(56px, 9vw, 70px)' }}
           />
         </Link>
 
