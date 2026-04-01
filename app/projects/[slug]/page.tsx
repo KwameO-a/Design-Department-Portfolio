@@ -18,6 +18,34 @@ type Project = {
 
 /** ✅ Local "DB" — build-time data source */
 const DB: Record<string, Project> = {
+  haske: {
+    title: 'Haske',
+    subtitle: 'Luxury Residences | East Legon, Accra',
+    hero: '/images/works/haske/haske-ext1.jpg',
+    intro: [
+      'Luxury in every detail \u2014 where design whispers its excellence through the smallest gestures. Generous, light-filled spaces unfold with effortless function, each carefully curated to elevate everyday living.',
+      'Set within one of Accra\u2019s most vibrant enclaves, Haske enjoys the rhythm of East Legon, where connectivity, culture, and calm converge, placing the city\u2019s finest dining, commerce, and leisure just moments from your door.',
+      'Here, poetry lives in precision, and luxury is felt in every thoughtfully crafted moment.',
+    ],
+    section2: {
+      leadImage: '/images/works/haske/haske-int1-people.jpg',
+      body: [
+        'Boldness drives innovation. It allows us to challenge convention, explore new expressions, and embrace contemporary technologies that push design forward. Elegance tempers this ambition, ensuring that each space remains timeless, human-centered, and effortlessly functional.',
+        'The result is design that is expressive yet composed \u2014 spaces that feel powerful but never overwhelming, refined yet deeply characterful.',
+        'Haske offers a collection of thoughtfully curated amenities designed to meet the refined needs of its residents \u2014 from the iconic infinity-edge pool and state-of-the-art gymnasium to the hanging garden caf\u00e9 and rooftop leisure areas.',
+      ],
+      tiles: [
+        '/images/works/haske/haske-ext2.jpg',
+        '/images/works/haske/haske-ext3.jpg',
+        '/images/works/haske/haske-int2.jpg',
+        '/images/works/haske/haske-int3.jpg',
+        '/images/works/haske/haske-int4.jpg',
+        '/images/works/haske/haske-int5-people.jpg',
+        '/images/works/haske/haske-int6.jpg',
+        '/images/works/haske/haske-int7.jpg',
+      ],
+    },
+  },
   'aster-azalea': {
     title: 'Aster & Azalea I',
     subtitle: 'Townhouses | Accra, Ghana',

@@ -15,6 +15,7 @@ type Project = {
 };
 
 const PROJECTS: Project[] = [
+  { slug: 'haske',              title: 'Haske',             location: 'East Legon, Accra', cover: '/images/works/haske/haske-ext1.jpg' },
   { slug: 'aster-azalea',      title: 'Aster & Azalea I',  location: 'Accra, Ghana',     cover: '/images/works/aster1.PNG' },
   { slug: 'house-in-squares',  title: 'House in Squares',  location: 'Accra, Ghana',     cover: '/images/works/houseinsquare4.jpg' },
   { slug: 'aster-azalea1',     title: 'Aster & Azalea II', location: 'Accra, Ghana',     cover: '/images/works/astera1.jpg' },
@@ -24,6 +25,7 @@ const PROJECTS: Project[] = [
 
 /** 12-col collage layout on lg; sculpt sizes */
 const LAYOUT: Record<string, { col: number; rows: number }> = {
+  haske:                { col: 8, rows: 3 },
   iaa:                  { col: 8, rows: 3 },
   'industrial-gallery': { col: 8, rows: 3 },
   'aster-azalea':       { col: 8, rows: 2 },
@@ -37,7 +39,7 @@ const LAYOUT: Record<string, { col: number; rows: number }> = {
 };
 
 /** Spotlight next to intro */
-const SPOTLIGHT_SLUG = 'house-in-squares';
+const SPOTLIGHT_SLUG = 'haske';
 
 export default function Buildings() {
   const spotlight = PROJECTS.find((p) => p.slug === SPOTLIGHT_SLUG) ?? PROJECTS[0];
