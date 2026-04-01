@@ -49,43 +49,7 @@ export default function Buildings() {
     <div className="min-h-screen bg-black text-white">
       <Header />
 
-      {/* Video Hero Banner */}
-      <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          poster="/images/works/haske/haske-ext1.jpg"
-        >
-          <source src="/images/works/haske-hero.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex items-center justify-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center"
-          >
-            <h1
-              className="font-bold text-white tracking-[0.25em] uppercase"
-              style={{ fontSize: 'clamp(28px, 5vw, 64px)' }}
-            >
-              Our Studio
-            </h1>
-            <p
-              className="mt-3 text-white/80 tracking-[0.15em] uppercase"
-              style={{ fontSize: 'clamp(12px, 1.5vw, 18px)' }}
-            >
-              Architecture &middot; Design &middot; Innovation
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="mx-auto w-full max-w-7xl px-6 pt-12 md:pt-16 lg:pt-20 pb-16">
+      <div className="mx-auto w-full max-w-7xl px-6 pt-24 md:pt-28 lg:pt-32 pb-16">
         {/* Intro + Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
           {/* Left: heading + paragraph — slides in from left */}

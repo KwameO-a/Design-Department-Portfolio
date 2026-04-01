@@ -1,24 +1,25 @@
 'use client';
 
-import { ParallaxImage } from './animations';
-import { getBlur } from '../lib/blur-placeholders';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Parallax background with blur placeholder */}
-      <ParallaxImage
-        src="/images/Hero.png"
-        alt="Hero background"
-        speed={0.15}
-        priority
-        sizes="100vw"
-        quality={90}
-        blurDataURL={getBlur('/images/Hero.png')}
-        className="absolute inset-0"
-        overlay={0.3}
-      />
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover"
+        poster="/images/Hero.png"
+      >
+        <source src="/images/works/haske-hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/30" />
 
       {/* Content — animated entrance */}
       <div className="relative z-10 text-center text-white px-4">
