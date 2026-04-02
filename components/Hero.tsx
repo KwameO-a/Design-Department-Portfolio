@@ -13,7 +13,7 @@ export default function Hero() {
         playsInline
         preload="metadata"
         className="absolute inset-0 h-full w-full object-cover"
-        poster="/images/Hero.png"
+        poster="/images/hero-poster.jpg"
       >
         <source src="/images/hero-video.mp4" type="video/mp4" />
       </video>
