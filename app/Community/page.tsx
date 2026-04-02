@@ -266,6 +266,80 @@ export default function CommunityPlusPage() {
         </div>
       </section>
 
+      {/* COMMUNITY PROJECTS GRID */}
+      <section className="px-6 py-16" style={{ backgroundColor: '#F5F0EB' }}>
+        <div className="mx-auto w-full max-w-[1100px]">
+          <FadeIn direction="up">
+            <div className="mb-2 flex items-center gap-3">
+              <PlusIcon size={18} />
+              <TextFill as="h3" className="text-3xl md:text-4xl font-semibold">
+                Our Projects
+              </TextFill>
+            </div>
+            <TextFill as="p" fillColor="#525252" className="mb-10">Community-driven initiatives shaping futures</TextFill>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Growing Schools Under Trees */}
+            <FadeIn direction="up" delay={0}>
+              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src="/images/growing-schools-render.jpg"
+                    alt="Growing Schools Under Trees"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 550px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
+                    Growing Schools Under Trees
+                  </h4>
+                  <p className="text-sm text-neutral-600 mb-3">
+                    Classrooms &bull; Libraries &bull; Infirmaries &bull; Playgrounds
+                  </p>
+                  <p className="text-sm text-neutral-700 leading-relaxed">
+                    Expanding access to safe classrooms, libraries, infirmaries and playgrounds
+                    in under-resourced communities across Ghana. Through modular, incremental
+                    design, we deliver express relief to schools under trees &mdash; one simple
+                    block at a time.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Sirigu Maze Concept */}
+            <FadeIn direction="up" delay={0.15}>
+              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src="/images/sirigu-maze-render.jpg"
+                    alt="Sirigu Maze Concept"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 550px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
+                    New Breath to a Dying Art
+                  </h4>
+                  <p className="text-sm text-neutral-600 mb-3">
+                    Traditional Arts &amp; Crafts Gallery &bull; Sirigu
+                  </p>
+                  <p className="text-sm text-neutral-700 leading-relaxed">
+                    A cultural preservation initiative in Sirigu, celebrating and revitalising
+                    the traditional arts and crafts heritage of northern Ghana through
+                    a purpose-built gallery and community engagement space.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* PRIMARY FOCUS */}
       <section className="px-6 py-16 bg-white">
         <div className="mx-auto grid w-full max-w-[1100px] gap-10 md:grid-cols-2 items-start">
