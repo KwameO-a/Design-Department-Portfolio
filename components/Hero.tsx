@@ -11,11 +11,11 @@ export default function Hero() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 h-full w-full object-cover"
         poster="/images/Hero.png"
       >
-        <source src="/images/works/haske-hero.mp4" type="video/mp4" />
+        <source src="/images/hero-video.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay */}

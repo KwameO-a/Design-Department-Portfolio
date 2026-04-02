@@ -29,6 +29,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# large source files (not for deployment)
+source-files/
+public/images/works/*.zip
+public/images/works/*.pdf
+public/images/works/*4k*
+public/images/works/haske-hero.mp4
+nul
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
