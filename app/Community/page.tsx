@@ -12,7 +12,7 @@ const ACCENT = '#8B6B52';
 const BRAND = '#5A2E23';
 const LIGHT = '#D9E4E4';
 
-const HERO_IMG = '/images/CommunityHero.png';
+const HERO_IMG = '/images/CommunityHero.jpg';
 const SPLIT_IMG = '/images/split.jpg';
 const REJ_IMG   = '/images/classroom.png';
 const DSG_IMG   = '/images/Student.jpg';
