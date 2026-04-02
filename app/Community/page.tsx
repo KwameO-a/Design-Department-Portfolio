@@ -186,14 +186,14 @@ export default function CommunityPlusPage() {
       <ContentGrid items={navItems} />
 
       {/* HERO */}
-      <section className="relative min-h-[58vh]">
+      <section className="relative min-h-[75vh]">
         <Image
           src={HERO_IMG}
           alt="Community Plus hero background"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-center"
           placeholder="blur"
           blurDataURL={getBlur(HERO_IMG)}
         />
