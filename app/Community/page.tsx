@@ -441,22 +441,22 @@ export default function CommunityPlusPage() {
                 meta={<>Strategic Lead — Design Department</>}
               />
             </FadeIn>
-            <FadeIn direction="up" delay={0.1}>
+            <div>
               <TeamMember
                 img="/images/philip.jpeg"
                 name={<>Philip <span className="font-semibold">Opare</span>, PMP&reg;</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Fund Manager</span>}
                 meta={<>Cost Manager — Design Department</>}
               />
-            </FadeIn>
-            <FadeIn direction="up" delay={0.1}>
+            </div>
+            <div>
               <TeamMember
                 img="/images/victor1.png"
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
               />
-            </FadeIn>
+            </div>
           </div>
 
           {/* Desktop: row of 3, then 2 centred */}
@@ -485,22 +485,22 @@ export default function CommunityPlusPage() {
                 meta={<>Cost Manager — Design Department</>}
               />
             </FadeIn>
-            <FadeIn direction="up" delay={0.1} className="col-start-3 col-span-3 flex justify-center">
+            <div className="col-start-3 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/Zoe1.png"
                 name={<>Zoe Lois <span className="font-semibold">Poku</span></>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Programmes Director</span>}
                 meta={<>Mechanical Engineer — Mantrac Ghana Ltd.</>}
               />
-            </FadeIn>
-            <FadeIn direction="up" delay={0.22} className="col-start-7 col-span-3 flex justify-center">
+            </div>
+            <div className="col-start-7 col-span-3 flex justify-center">
               <TeamMember
                 img="/images/victor1.png"
                 name={<>Victor K. <span className="font-semibold">Owusu-Sekyere</span>, AGIA</>}
                 role={<span className="font-semibold" style={{ color: ACCENT }}>Design Lead</span>}
                 meta={<>Creative Director — Design Department</>}
               />
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
