@@ -282,59 +282,63 @@ export default function CommunityPlusPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Growing Schools Under Trees */}
             <FadeIn direction="up" delay={0}>
-              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src="/images/growing-schools-render.jpg"
-                    alt="Growing Schools Under Trees"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 550px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              <Link href="/Community/growing-schools" className="block">
+                <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src="/images/growing-schools-render.jpg"
+                      alt="Growing Schools Under Trees"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 550px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
+                      Growing Schools Under Trees
+                    </h4>
+                    <p className="text-sm text-neutral-600 mb-3">
+                      Classrooms &bull; Libraries &bull; Infirmaries &bull; Playgrounds
+                    </p>
+                    <p className="text-sm text-neutral-700 leading-relaxed">
+                      Expanding access to safe classrooms, libraries, infirmaries and playgrounds
+                      in under-resourced communities across Ghana. Through modular, incremental
+                      design, we deliver express relief to schools under trees &mdash; one simple
+                      block at a time.
+                    </p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
-                    Growing Schools Under Trees
-                  </h4>
-                  <p className="text-sm text-neutral-600 mb-3">
-                    Classrooms &bull; Libraries &bull; Infirmaries &bull; Playgrounds
-                  </p>
-                  <p className="text-sm text-neutral-700 leading-relaxed">
-                    Expanding access to safe classrooms, libraries, infirmaries and playgrounds
-                    in under-resourced communities across Ghana. Through modular, incremental
-                    design, we deliver express relief to schools under trees &mdash; one simple
-                    block at a time.
-                  </p>
-                </div>
-              </div>
+              </Link>
             </FadeIn>
 
             {/* Sirigu Maze Concept */}
             <FadeIn direction="up" delay={0.15}>
-              <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src="/images/sirigu-maze-render.jpg"
-                    alt="Sirigu Maze Concept"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 550px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+              <Link href="/Community/sirigu-maze" className="block">
+                <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src="/images/sirigu-maze-render.jpg"
+                      alt="Sirigu Maze Concept"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 550px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
+                      New Breath to a Dying Art
+                    </h4>
+                    <p className="text-sm text-neutral-600 mb-3">
+                      Traditional Arts &amp; Crafts Gallery &bull; Sirigu
+                    </p>
+                    <p className="text-sm text-neutral-700 leading-relaxed">
+                      A cultural preservation initiative in Sirigu, celebrating and revitalising
+                      the traditional arts and crafts heritage of northern Ghana through
+                      a purpose-built gallery and community engagement space.
+                    </p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-bold mb-2" style={{ color: BRAND }}>
-                    New Breath to a Dying Art
-                  </h4>
-                  <p className="text-sm text-neutral-600 mb-3">
-                    Traditional Arts &amp; Crafts Gallery &bull; Sirigu
-                  </p>
-                  <p className="text-sm text-neutral-700 leading-relaxed">
-                    A cultural preservation initiative in Sirigu, celebrating and revitalising
-                    the traditional arts and crafts heritage of northern Ghana through
-                    a purpose-built gallery and community engagement space.
-                  </p>
-                </div>
-              </div>
+              </Link>
             </FadeIn>
           </div>
         </div>
