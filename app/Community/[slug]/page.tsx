@@ -59,6 +59,10 @@ const DB: Record<string, Project> = {
       '/images/works/sirigu/sm-6.jpg',
       '/images/works/sirigu/sm-7.jpg',
       '/images/works/sirigu/sm-8.jpg',
+      '/images/works/sirigu/sm-9.jpg',
+      '/images/works/sirigu/sm-10.jpg',
+      '/images/works/sirigu/sm-11.jpg',
+      '/images/works/sirigu/sm-12.jpg',
     ],
   },
 };
