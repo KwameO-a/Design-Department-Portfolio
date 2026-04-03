@@ -48,21 +48,32 @@ function FadeIn({
   once?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  /* Start visible so content is never hidden if JS/observer fails */
+  const [state, setState] = useState<'idle' | 'hidden' | 'visible'>('idle');
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    /* If the element is already in (or near) the viewport, skip animation */
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100) {
+      setState('visible');
+      return;
+    }
+
+    /* Otherwise hide it and wait for scroll */
+    setState('hidden');
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setState('visible');
           if (once) obs.unobserve(el);
         } else if (!once) {
-          setVisible(false);
+          setState('hidden');
         }
       },
-      { rootMargin: '0px', threshold: 0.1 }
+      { rootMargin: '0px 0px 100px 0px', threshold: 0 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -74,15 +85,17 @@ function FadeIn({
     direction === 'left'  ? `translateX(${distance}px)` :
     direction === 'right' ? `translateX(-${distance}px)` : 'none';
 
+  const isVisible = state !== 'hidden';
+
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : tx,
-        transition: `opacity ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s, transform ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s`,
-        willChange: visible ? 'auto' : 'opacity, transform',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'none' : tx,
+        transition: state === 'idle' ? 'none' : `opacity ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s, transform ${duration}s cubic-bezier(0.25,0.1,0.25,1) ${delay}s`,
+        willChange: isVisible ? 'auto' : 'opacity, transform',
       }}
     >
       {children}
