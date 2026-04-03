@@ -62,7 +62,7 @@ function FadeIn({
           setVisible(false);
         }
       },
-      { rootMargin: '-80px' }
+      { rootMargin: '0px', threshold: 0.1 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -508,15 +508,13 @@ export default function CommunityPlusPage() {
       {/* CLOSING CTA */}
       <section className="px-6 py-14" style={{ backgroundColor: DARK }}>
         <div className="mx-auto w-full max-w-[1100px] text-center">
-          <FadeIn direction="up" delay={0.1}>
-            <TextFill as="h3" fillColor={ACCENT} className="font-semibold" style={{ fontSize: 'clamp(22px,3vw,28px)' }}>
-              Collaborate with us
-            </TextFill>
-            <TextFill as="p" fillColor="#D9E4E4" className="mx-auto mt-3 max-w-3xl" style={{ lineHeight: 1.8 }}>
-              &ldquo;Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
-              become the architects of lasting change.&rdquo;
-            </TextFill>
-          </FadeIn>
+          <TextFill as="h3" fillColor={ACCENT} className="font-semibold" style={{ fontSize: 'clamp(22px,3vw,28px)' }}>
+            Collaborate with us
+          </TextFill>
+          <TextFill as="p" fillColor="#D9E4E4" className="mx-auto mt-3 max-w-3xl" style={{ lineHeight: 1.8 }}>
+            &ldquo;Every great transformation begins with one bold step. Together, we can ignite that first spark and empower communities to
+            become the architects of lasting change.&rdquo;
+          </TextFill>
         </div>
       </section>
 
