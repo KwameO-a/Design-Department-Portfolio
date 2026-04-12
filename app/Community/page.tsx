@@ -299,7 +299,7 @@ export default function CommunityPlusPage() {
                 <div className="group overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
-                      src="/images/growing-schools-render.jpg"
+                      src="/images/growing-schools-cover.jpg"
                       alt="Growing Schools Under Trees"
                       fill
                       sizes="(max-width: 768px) 100vw, 550px"
